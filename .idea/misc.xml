@@ -3,24 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/Rodrigo/AndroidStudioProjects/CM07Project/app/src/main/res/drawable-anydpi/ic_action_sms.xml" value="0.25277777777777777" />
-        <entry key="..\:/Users/Rodrigo/AndroidStudioProjects/CM07Project/app/src/main/res/drawable/ic_dashboard_black_24dp.xml" value="0.25277777777777777" />
-        <entry key="..\:/Users/Rodrigo/AndroidStudioProjects/CM07Project/app/src/main/res/drawable/ic_sms_background.xml" value="0.25277777777777777" />
-        <entry key="..\:/Users/Rodrigo/AndroidStudioProjects/CM07Project/app/src/main/res/layout/activity_login.xml" value="0.264" />
-        <entry key="..\:/Users/Rodrigo/AndroidStudioProjects/CM07Project/app/src/main/res/layout/activity_main.xml" value="0.264" />
-        <entry key="..\:/Users/Rodrigo/AndroidStudioProjects/CM07Project/app/src/main/res/layout/activity_register.xml" value="0.4" />
-        <entry key="..\:/Users/Rodrigo/AndroidStudioProjects/CM07Project/app/src/main/res/layout/event_row.xml" value="0.264" />
-        <entry key="..\:/Users/Rodrigo/AndroidStudioProjects/CM07Project/app/src/main/res/layout/fragment_dashboard.xml" value="0.275" />
-        <entry key="..\:/Users/Rodrigo/AndroidStudioProjects/CM07Project/app/src/main/res/layout/fragment_events.xml" value="0.13468013468013468" />
-        <entry key="..\:/Users/Rodrigo/AndroidStudioProjects/CM07Project/app/src/main/res/layout/fragment_home.xml" value="0.275" />
-        <entry key="..\:/Users/Rodrigo/AndroidStudioProjects/CM07Project/app/src/main/res/layout/fragment_maps.xml" value="0.275" />
-        <entry key="..\:/Users/Rodrigo/AndroidStudioProjects/CM07Project/app/src/main/res/layout/fragment_messages.xml" value="0.275" />
-        <entry key="..\:/Users/Rodrigo/AndroidStudioProjects/CM07Project/app/src/main/res/layout/fragment_notifications.xml" value="0.275" />
-        <entry key="..\:/Users/Rodrigo/AndroidStudioProjects/CM07Project/app/src/main/res/layout/fragment_profile.xml" value="0.19427083333333334" />
-        <entry key="..\:/Users/Rodrigo/AndroidStudioProjects/CM07Project/app/src/main/res/layout/fragment_stock.xml" value="0.275" />
-        <entry key="..\:/Users/Rodrigo/AndroidStudioProjects/CM07Project/app/src/main/res/menu/bottom_nav_menu.xml" value="0.264" />
-        <entry key="..\:/Users/Rodrigo/AndroidStudioProjects/CM07Project/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.25277777777777777" />
-        <entry key="..\:/Users/Rodrigo/AndroidStudioProjects/CM07Project/app/src/main/res/mipmap-anydpi-v26/ic_sms.xml" value="0.25277777777777777" />
+        <entry key="..\:/Users/Rodrigo/AndroidStudioProjects/CM07Project/app/src/main/res/layout/activity_main.xml" value="0.275" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.18" />
+        <entry key="app/src/main/res/layout/activity_register.xml" value="0.25" />
       </map>
     </option>
   </component>

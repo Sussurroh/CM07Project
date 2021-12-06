@@ -12,11 +12,11 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:ems="10"
-        android:text="login"
+        android:text="Sign Up"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loginText5"
+        app:layout_constraintTop_toBottomOf="@+id/email"
         app:layout_constraintVertical_bias="0.13999999" />
 
     <TextView
@@ -27,12 +27,12 @@
         android:textSize="48sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/loginText2"
+        app:layout_constraintStart_toStartOf="@+id/firstname"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.19" />
 
     <EditText
-        android:id="@+id/loginText2"
+        android:id="@+id/firstname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="8"
@@ -47,7 +47,7 @@
 
 
     <EditText
-        android:id="@+id/enterLName"
+        android:id="@+id/Lastname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="26dp"
@@ -57,7 +57,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.90"
-        app:layout_constraintStart_toEndOf="@+id/loginText2"
+        app:layout_constraintStart_toEndOf="@+id/firstname"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titleText"
         app:layout_constraintVertical_bias="0.14" />
@@ -65,7 +65,7 @@
 
 
     <EditText
-        android:id="@+id/loginText4"
+        android:id="@+id/password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="8"
@@ -75,11 +75,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.10"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loginText2"
+        app:layout_constraintTop_toBottomOf="@+id/firstname"
         app:layout_constraintVertical_bias="0.05" />
 
     <EditText
-        android:id="@+id/enterLName2"
+        android:id="@+id/repeatpassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="26dp"
@@ -89,13 +89,13 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.90"
-        app:layout_constraintStart_toEndOf="@+id/loginText2"
+        app:layout_constraintStart_toEndOf="@+id/firstname"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/enterLName"
+        app:layout_constraintTop_toBottomOf="@+id/Lastname"
         app:layout_constraintVertical_bias="0.05" />
 
     <EditText
-        android:id="@+id/loginText5"
+        android:id="@+id/email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="17"
@@ -105,7 +105,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loginText4"
+        app:layout_constraintTop_toBottomOf="@+id/password"
         app:layout_constraintVertical_bias="0.05" />
 
 

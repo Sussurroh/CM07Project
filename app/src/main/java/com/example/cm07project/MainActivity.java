@@ -1,5 +1,6 @@
 package com.example.cm07project;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
@@ -15,16 +16,21 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.example.cm07project.databinding.ActivityMainBinding;
 import com.google.android.material.navigation.NavigationBarView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
 
     BottomNavigationView bottomNavigationView;
+    FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         FragmentManager fm = getSupportFragmentManager();
+
+        mAuth = FirebaseAuth.getInstance();
 
         bottomNavigationView = findViewById(R.id.nav_view);
         bottomNavigationView.setOnItemSelectedListener(item -> {
@@ -58,6 +64,16 @@ public class MainActivity extends AppCompatActivity {
             return true;
         });
         bottomNavigationView.setSelectedItemId(R.id.navigation_map);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        FirebaseUser user = mAuth.getCurrentUser();
+        if (user == null){
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+        }
     }
 
 }
