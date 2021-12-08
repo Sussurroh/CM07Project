@@ -15,6 +15,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -24,6 +25,8 @@ public class RegisterActivity extends AppCompatActivity {
 
     EditText memail;
     EditText mpassword;
+    EditText mfirstname;
+    EditText mlastname;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +37,8 @@ public class RegisterActivity extends AppCompatActivity {
 
         memail = findViewById(R.id.email);
         mpassword = findViewById(R.id.password);
-
+        mfirstname = findViewById(R.id.firstname);
+        mlastname = findViewById(R.id.Lastname);
 
 
         mAuth = FirebaseAuth.getInstance();
@@ -48,20 +52,42 @@ public class RegisterActivity extends AppCompatActivity {
     private void createUser() {
         String mail = memail.getText().toString();
         String pass = mpassword.getText().toString();
+        String first = mfirstname.getText().toString();
+        String last = mlastname.getText().toString();
 
-        if (TextUtils.isEmpty(mail)){
+         if (TextUtils.isEmpty(first)){
+            mfirstname.setError("First Name cannot be empty");
+            mfirstname.requestFocus();
+         } else if (TextUtils.isEmpty(last)) {
+             mlastname.setError("Last Name cannot be empty");
+             mlastname.requestFocus();
+         }else if (TextUtils.isEmpty(mail)){
             memail.setError("Email cannot be empty");
             memail.requestFocus();
-        } else if (TextUtils.isEmpty(pass)){
+         }else if (TextUtils.isEmpty(pass)){
             mpassword.setError("Password cannot be empty");
             mpassword.requestFocus();
-        } else {
+         } else {
             mAuth.createUserWithEmailAndPassword(mail,pass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
 
                     if (task.isSuccessful()){
-                        Toast.makeText(RegisterActivity.this, "User registered", Toast.LENGTH_SHORT).show();
+                        User user = new User(first,last,mail);
+                        FirebaseDatabase.getInstance().getReference("Users")
+                                .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()){
+                                    Toast.makeText(RegisterActivity.this, "User registered", Toast.LENGTH_SHORT).show();
+                                }else {
+                                    Toast.makeText(RegisterActivity.this, "Registration Failed:" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+
+                        //Toast.makeText(RegisterActivity.this, "User registered", Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
                     }else {
                         Toast.makeText(RegisterActivity.this, "Registration Failed:" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();

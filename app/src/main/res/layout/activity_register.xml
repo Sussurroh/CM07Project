@@ -63,7 +63,6 @@
         app:layout_constraintVertical_bias="0.14" />
 
 
-
     <EditText
         android:id="@+id/password"
         android:layout_width="wrap_content"
@@ -73,26 +72,10 @@
         android:minHeight="48dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.10"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/firstname"
-        app:layout_constraintVertical_bias="0.05" />
-
-    <EditText
-        android:id="@+id/repeatpassword"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="26dp"
-        android:ems="8"
-        android:hint="Confirm Password"
-        android:minHeight="48dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.90"
-        app:layout_constraintStart_toEndOf="@+id/firstname"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Lastname"
-        app:layout_constraintVertical_bias="0.05" />
+        app:layout_constraintVertical_bias="0.058" />
 
     <EditText
         android:id="@+id/email"
