@@ -5,9 +5,36 @@
     android:layout_height="match_parent"
     tools:context=".EventsFragment">
 
-   <androidx.recyclerview.widget.RecyclerView
+   <TextView
        android:layout_width="match_parent"
        android:layout_height="match_parent"
-       android:id="@+id/recyclerView"/>
+       android:text="Lista de Eventos"
+       android:id="@+id/nome"/>
+
+
+
+   <ListView
+       android:layout_marginTop="80dp"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:padding="10dp"
+       android:id="@+id/listView"/>
+
+   <TextView
+       android:id="@+id/eventvalue"
+       android:layout_width="75dp"
+       android:layout_height="wrap_content"
+       android:layout_marginLeft="120dp"
+       android:layout_marginTop="40sp"
+       android:textSize="20sp" />
+   <Button
+       android:id="@+id/eventdetails1"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:text="Ver+"
+       android:layout_marginTop="100dp"
+       android:layout_marginLeft="250dp"/>
+
+
 
 </FrameLayout>

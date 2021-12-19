@@ -45,7 +45,7 @@ public class ProfileFragment extends Fragment {
         final TextView but2 = (TextView) root.findViewById(R.id.lastnamevalue);
         final TextView but3 = (TextView) root.findViewById(R.id.emailvalue);
 
-        /** NAO ESTA A IR BUSCAR O USER**/
+
         reference.child(userid).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
