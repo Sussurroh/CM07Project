@@ -53,5 +53,14 @@
         android:layout_marginLeft="80sp"
         />
 
+    <Button
+        android:id="@+id/signOut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="10sp"
+        android:textColor="#ffff"
+        android:layout_marginTop="150sp"
+        android:text="LogOut" />
+
 
 </FrameLayout>

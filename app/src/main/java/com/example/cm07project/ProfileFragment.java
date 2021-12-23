@@ -1,5 +1,6 @@
 package com.example.cm07project;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -8,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,6 +28,7 @@ public class ProfileFragment extends Fragment {
     private DatabaseReference reference;
     private String userid;
     TextView imageView;
+    private Button logout;
 
 
 
@@ -44,6 +47,7 @@ public class ProfileFragment extends Fragment {
         final TextView but = (TextView) root.findViewById(R.id.firstnamevalue);
         final TextView but2 = (TextView) root.findViewById(R.id.lastnamevalue);
         final TextView but3 = (TextView) root.findViewById(R.id.emailvalue);
+        logout = root.findViewById(R.id.signOut);
 
 
         reference.child(userid).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -64,6 +68,16 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                // Toast.makeText(ProfileFragment.this, "Profile Failed:" , Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseAuth.getInstance().signOut();
+                Intent i = new Intent(getActivity(), LoginActivity.class);
+                startActivity(i);
+
             }
         });
 

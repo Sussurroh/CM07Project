@@ -16,6 +16,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -47,11 +50,29 @@ public class StockFragment extends Fragment {
         addd = root.findViewById(R.id.addd);
 
        // FirebaseDatabase.getInstance().getReference("Market").child("3").setValue("asb");
+        //FirebaseDatabase.getInstance().getReference("Market").child("item").push().setValue("hugo");
         addd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String txt_name = edit.getText().toString();
-                FirebaseDatabase.getInstance().getReference("Market").push().setValue(txt_name);
+                //FirebaseDatabase.getInstance().getReference("Market").child("item").push().setValue(txt_name);
+                Market event = new Market("0",txt_name);
+
+
+                FirebaseDatabase.getInstance().getReference("Market")
+                        //.child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                        .push()
+                        .setValue(event).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()){
+                            Toast.makeText(getActivity(), "Doação registered", Toast.LENGTH_SHORT).show();
+                        }else {
+                            Toast.makeText(getActivity(), "Doação Failed:" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+
             }
         });
 
@@ -61,20 +82,20 @@ public class StockFragment extends Fragment {
         final ArrayAdapter adapter = new ArrayAdapter<String>(root.getContext(), R.layout.simple_list_item_1, list);
         listView.setAdapter(adapter);
 
-        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Market");
+        //DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Market");
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Market");
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 list.clear();
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()){
-
-                    list.add(snapshot.getValue().toString());
+                    final String a = snapshot.child("item").getValue().toString();
+                    //list.add(snapshot.getValue().toString());
+                    list.add(a);
 
                 }
 
                 adapter.notifyDataSetChanged();
-
-
 
             }
 

@@ -15,11 +15,14 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Adapter;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -49,8 +52,7 @@ public class EventsFragment extends Fragment {
         listView.setAdapter(adapter);
 
         final TextView but = (TextView) root.findViewById(R.id.eventvalue);
-        final Button v1 = root.findViewById(R.id.eventdetails1);
-
+        //final Button v1 = root.findViewById(R.id.eventdetails1);
 
 
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Events");
@@ -59,13 +61,11 @@ public class EventsFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 list.clear();
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()){
-                    //EventsInformation info = snapshot.getValue(EventsInformation.class);
-                    //String txttt = info.getEvent_name();
 
                     final String a = snapshot.child("name").getValue().toString();
-                    //list.add(snapshot.getValue().toString());
-                    //but.setText(a);
                     list.add(a);
+
+
                 }
                 adapter.notifyDataSetChanged();
 
@@ -77,8 +77,56 @@ public class EventsFragment extends Fragment {
             }
         });
 
-        Bundle bundle = new Bundle();
 
+/** Vai fzaer com que cada item se torne clickable**/
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                //valor do nome da lista Exemplo:Natal
+                final String selectedFromList = (String) listView.getItemAtPosition(position);
+
+                reference.orderByChild(selectedFromList).addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                        for (DataSnapshot snapshot : dataSnapshot.getChildren()){
+
+                            final String a = snapshot.child("name").getValue().toString();
+
+                            //se o nome do item selecionado for igual a pesquisa entra e encontra o id desse nome do evento no db
+                            //e muda de fragmaneto com informacao do id
+                            if (selectedFromList.toString().equals(a)){
+
+                                final String n1 =  snapshot.child("id").getValue().toString();
+                                Bundle bundle = new Bundle();
+                                FragmentManager fm = getFragmentManager();
+                                FragmentTransaction ft = fm.beginTransaction();
+                                EventsDetailsFragment llf = new EventsDetailsFragment();
+                                bundle.putString("message", n1.toString());
+                                llf.setArguments(bundle);
+                                ft.replace(R.id.container, llf);
+                                ft.commit();
+                                //Toast.makeText(getActivity(), "Value: "+n1.toString(), Toast.LENGTH_SHORT).show();
+                            }
+                        }
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+            }
+
+        });
+
+
+
+/** Teste botao
+        //EVENTO id=1
+        Bundle bundle = new Bundle();
         v1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -90,7 +138,7 @@ public class EventsFragment extends Fragment {
                 ft.replace(R.id.container, llf);
                 ft.commit();
             }
-        });
+        }); **/
 
         return root;
     }

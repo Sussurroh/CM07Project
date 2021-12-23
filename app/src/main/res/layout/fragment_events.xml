@@ -8,7 +8,7 @@
    <TextView
        android:layout_width="match_parent"
        android:layout_height="match_parent"
-       android:text="Lista de Eventos"
+       android:text="Lista de Eventos (carregar no item para obter mais informações)"
        android:id="@+id/nome"/>
 
 
@@ -27,13 +27,7 @@
        android:layout_marginLeft="120dp"
        android:layout_marginTop="40sp"
        android:textSize="20sp" />
-   <Button
-       android:id="@+id/eventdetails1"
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       android:text="Ver+"
-       android:layout_marginTop="100dp"
-       android:layout_marginLeft="250dp"/>
+
 
 
 

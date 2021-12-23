@@ -3,14 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".StockFragment">
+    tools:context=".EventsDonationFragment">>
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Stock Total de doações feitas ao longo do tempo na nossa App!"
-        android:id="@+id/nome"/>
+        android:text="Event Details Fragment" />
 
 
 
@@ -37,6 +35,9 @@
         android:text="Add"
         android:layout_marginTop="30dp"
         android:layout_marginLeft="250dp"/>
+
+
+
 
 
 </FrameLayout>
