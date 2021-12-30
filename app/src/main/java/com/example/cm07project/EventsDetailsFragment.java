@@ -57,14 +57,17 @@ public class EventsDetailsFragment extends Fragment {
                     final String a = snapshot.child("id").getValue().toString();
                     if (strtext.toString().equals(a)){
                         //list.add(a);
-                        final String n1 = "nome do evento: " + snapshot.child("name").getValue().toString();
+                        final String n1 = "Nome do evento: " + snapshot.child("name").getValue().toString();
                         final String n2 = "Organizador: " + snapshot.child("org").getValue().toString();
                         final String n3 = "Data: " + snapshot.child("date").getValue().toString();
                         final String n4 = "Descrição: " + snapshot.child("des").getValue().toString();
+                        final String n5 = "Localização: " + snapshot.child("streetadress").getValue().toString()
+                                +", " + snapshot.child("state").getValue().toString();
                         list.add(n1);
                         list.add(n2);
                         list.add(n3);
                         list.add(n4);
+                        list.add(n5);
                     }
 
                     //list.add(a);

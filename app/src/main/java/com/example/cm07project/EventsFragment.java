@@ -40,6 +40,7 @@ public class EventsFragment extends Fragment {
     private FirebaseUser user;
     private DatabaseReference reference;
     private Button v1;
+    private Button event;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -124,21 +125,22 @@ public class EventsFragment extends Fragment {
 
 
 
-/** Teste botao
-        //EVENTO id=1
-        Bundle bundle = new Bundle();
-        v1.setOnClickListener(new View.OnClickListener() {
+        final Button event = root.findViewById(R.id.eventcreatbutton);
+
+
+
+        event.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 FragmentManager fm = getFragmentManager();
                 FragmentTransaction ft = fm.beginTransaction();
-                EventsDetailsFragment llf = new EventsDetailsFragment();
-                bundle.putString("message", "1");
-                llf.setArguments(bundle);
+
+                EventCreateFragment llf = new EventCreateFragment();
+
                 ft.replace(R.id.container, llf);
                 ft.commit();
             }
-        }); **/
+        });
 
         return root;
     }

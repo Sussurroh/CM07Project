@@ -2,8 +2,14 @@ package com.example.cm07project;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 
+import android.Manifest;
+import android.content.Context;
+import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,8 +21,20 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 public class MapsFragment extends Fragment {
+
+    private DatabaseReference reference;
 
     private OnMapReadyCallback callback = new OnMapReadyCallback() {
 
@@ -31,9 +49,25 @@ public class MapsFragment extends Fragment {
          */
         @Override
         public void onMapReady(GoogleMap googleMap) {
-            LatLng sydney = new LatLng(-34, 151);
-            googleMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-            googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+           // LatLng sydney = new LatLng(-34, 151);
+           // googleMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
+            //googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+
+
+            getDataFromFirebase(googleMap);
+
+            if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                // TODO: Consider calling
+                //    ActivityCompat#requestPermissions
+                // here to request the missing permissions, and then overriding
+                //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+                //                                          int[] grantResults)
+                // to handle the case where the user grants the permission. See the documentation
+                // for ActivityCompat#requestPermissions for more details.
+                return;
+            }
+            googleMap.setMyLocationEnabled(true);
+
         }
     };
 
@@ -42,7 +76,10 @@ public class MapsFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_maps, container, false);
+        View view = inflater.inflate(R.layout.fragment_maps, container, false);
+
+
+        return view;
     }
 
     @Override
@@ -54,4 +91,86 @@ public class MapsFragment extends Fragment {
             mapFragment.getMapAsync(callback);
         }
     }
+
+    List<Places> placesList = new ArrayList<>();
+    Places places;
+
+    void getDataFromFirebase(GoogleMap googleMap){
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Events");
+        placesList.clear();
+        reference.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                Map<String,String> map = (Map<String, String>) snapshot.getValue();
+                places = new Places();
+                places.setCountry(map.get("country"));
+                places.setState(map.get("state"));
+                places.setStreetAdress(map.get("streetadress"));
+                places.setEvent_name(map.get("name"));
+                placesList.add(places);
+
+                googleMap.getUiSettings().setZoomControlsEnabled(true);
+                googleMap.setPadding(20,20,20,200);
+
+                LatLng address = null;
+
+                for (int i = 0; i<placesList.size();i++){
+                    try {
+                        String adr = placesList.get(i).getStreetAdress()+ ","+
+                                placesList.get(i).getState()+","+
+                                placesList.get(i).getCountry()+",";
+                        address=getLatLongFromAdress(getActivity(),adr);
+
+                        googleMap.addMarker(new MarkerOptions().position(address).title(placesList.get(i).getEvent_name()));
+                        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(address,10));
+
+                    }catch (Exception e){
+                    }
+                }
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+    }
+
+    LatLng getLatLongFromAdress(Context context, String Stradress){
+        Geocoder geocoder = new Geocoder(context);
+        List<Address> address;
+        LatLng latLng = null;
+        try {
+            address=geocoder.getFromLocationName(Stradress,2);
+            if (address==null){
+                return null;
+            }
+            Address loc= address.get(0);
+            latLng = new LatLng(loc.getLatitude(), loc.getLongitude());
+
+        }catch (Exception e){
+
+        }
+
+        return latLng;
+    }
+
+
+
 }
