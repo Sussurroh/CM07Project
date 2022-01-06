@@ -5,12 +5,17 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,6 +27,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+
 public class ProfileFragment extends Fragment {
 
     private FirebaseUser user;
@@ -29,6 +36,7 @@ public class ProfileFragment extends Fragment {
     private String userid;
     TextView imageView;
     private Button logout;
+    private ListView listView;
 
 
 
@@ -81,8 +89,141 @@ public class ProfileFragment extends Fragment {
             }
         });
 
+        /** List view dos eventos que o user participa **/
+        ListView listView = (ListView) root.findViewById(R.id.listView);
+        final ArrayList<String> list = new ArrayList<>();
+        final ArrayAdapter adapter = new ArrayAdapter<String>(root.getContext(), R.layout.simple_list_item_1, list);
+        listView.setAdapter(adapter);
+
+        /** 1o vai ver o user id com a tabela Users para saber a info do mail**/
+        reference.child(userid).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                User userprofile = snapshot.getValue(User.class);
+
+                if (userprofile != null) {
+                    String firstname = userprofile.firstname;
+                    String lastname = userprofile.lastname;
+                    final String email = userprofile.email;
+                    /** Depois de ter o email do userid vai ver a tabela People aonde tem esse email para ver
+                     * a que evento_id corresponde*/
+                    DatabaseReference reference2 = FirebaseDatabase.getInstance().getReference().child("People");
+                    reference2.addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            list.clear();
+                            for (DataSnapshot snapshot : dataSnapshot.getChildren()){
+
+                                final String meventid = snapshot.child("eventid").getValue().toString();
+                                final String mmail = snapshot.child("email").getValue().toString();
+                                /** Se o mail do user e o email da pessoa que participa no
+                                 * evento sao iguais -> vai buscar a tabela Event o nome do evento
+                                 * para mostrar na listView**/
+                                if (mmail.equals(email)){
+                                    //list.add(meventid);
+                                    DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Events");
+                                    reference.addValueEventListener(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                            //list.clear();
+                                            for (DataSnapshot snapshot : dataSnapshot.getChildren()){
+
+                                                final String a = snapshot.child("name").getValue().toString();
+                                                final String mid = snapshot.child("id").getValue().toString();
+                                                if (meventid.equals(mid)){
+                                                    list.add(a);
+                                                }
+                                            }
+                                            adapter.notifyDataSetChanged();
+
+                                        }
+
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError error) {
+
+                                        }
+                                    });
+
+
+                                }
+
+
+
+                            }
+                            adapter.notifyDataSetChanged();
+
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+
+
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                // Toast.makeText(ProfileFragment.this, "Profile Failed:" , Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        DatabaseReference reference4 = FirebaseDatabase.getInstance().getReference("Events");
+/** Vai fzaer com que cada item se torne clickable**/
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                //valor do nome da lista Exemplo:Natal
+                final String selectedFromList = (String) listView.getItemAtPosition(position);
+
+                reference4.orderByChild(selectedFromList).addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                        for (DataSnapshot snapshot : dataSnapshot.getChildren()){
+
+                            final String a = snapshot.child("name").getValue().toString();
+
+                            //se o nome do item selecionado for igual a pesquisa entra e encontra o id desse nome do evento no db
+                            //e muda de fragmaneto com informacao do id
+                            if (selectedFromList.toString().equals(a)){
+
+                                final String n1 =  snapshot.child("id").getValue().toString();
+                                Bundle bundle = new Bundle();
+                                FragmentManager fm = getFragmentManager();
+                                FragmentTransaction ft = fm.beginTransaction();
+                                EventsDetailsFragment llf = new EventsDetailsFragment();
+                                bundle.putString("message", n1.toString());
+                                llf.setArguments(bundle);
+                                ft.replace(R.id.container, llf);
+                                ft.commit();
+                                //Toast.makeText(getActivity(), "Value: "+n1.toString(), Toast.LENGTH_SHORT).show();
+                            }
+                        }
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+            }
+
+        });
+
+
+
+
+
         //return inflater.inflate(R.layout.fragment_profile, container, false);
         return root;
 
     }
+
+
 }

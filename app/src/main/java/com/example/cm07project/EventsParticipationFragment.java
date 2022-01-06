@@ -97,8 +97,10 @@ public class EventsParticipationFragment extends Fragment {
                         if (userprofile != null) {
                             String firstname = userprofile.firstname;
                             String lastname = userprofile.lastname;
+                            String email = userprofile.email;
                             String fullname = firstname +" "+lastname;
-                            People event = new People(strtext.toString(),fullname);
+
+                            People event = new People(strtext.toString(),fullname,email);
                             
                             FirebaseDatabase.getInstance().getReference("People")
                                     //.child(FirebaseAuth.getInstance().getCurrentUser().getUid())
