@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.Manifest;
 import android.content.Context;
@@ -14,12 +16,15 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -49,10 +54,6 @@ public class MapsFragment extends Fragment {
          */
         @Override
         public void onMapReady(GoogleMap googleMap) {
-           // LatLng sydney = new LatLng(-34, 151);
-           // googleMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-            //googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
-
 
             getDataFromFirebase(googleMap);
 
@@ -67,6 +68,8 @@ public class MapsFragment extends Fragment {
                 return;
             }
             googleMap.setMyLocationEnabled(true);
+
+
 
         }
     };
@@ -102,15 +105,19 @@ public class MapsFragment extends Fragment {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 Map<String,String> map = (Map<String, String>) snapshot.getValue();
+
                 places = new Places();
                 places.setCountry(map.get("country"));
                 places.setState(map.get("state"));
                 places.setStreetAdress(map.get("streetadress"));
                 places.setEvent_name(map.get("name"));
+                places.setOrg(map.get("org"));
+                places.setDate(map.get("date"));
                 placesList.add(places);
 
                 googleMap.getUiSettings().setZoomControlsEnabled(true);
                 googleMap.setPadding(20,20,20,200);
+
 
                 LatLng address = null;
 
@@ -119,14 +126,77 @@ public class MapsFragment extends Fragment {
                         String adr = placesList.get(i).getStreetAdress()+ ","+
                                 placesList.get(i).getState()+","+
                                 placesList.get(i).getCountry()+",";
+                        //Funtion no final do codigo
                         address=getLatLongFromAdress(getActivity(),adr);
 
-                        googleMap.addMarker(new MarkerOptions().position(address).title(placesList.get(i).getEvent_name()));
+                        googleMap.addMarker(new MarkerOptions()
+                                .position(address)
+                                .title(placesList.get(i).getEvent_name())
+                                .snippet(placesList.get(i).getOrg()+", " + placesList.get(i).getDate()));
                         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(address,10));
+
+                        //Quando se carrega no marker mostra uma InfoWindow Custom
+                        googleMap.setInfoWindowAdapter(new CustomInfoWindowForGoogleMap(getActivity()));
+
 
                     }catch (Exception e){
                     }
                 }
+
+
+
+                // adding on click listener to marker of google maps.
+                googleMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+                    @Override
+                    public boolean onMarkerClick(Marker marker) {
+                        // on marker click we are getting the title of our marker
+                        // which is clicked and displaying it in a toast message.
+                        String markerName = marker.getTitle();
+                        //Toast.makeText(getActivity(), "Evento Cliked Teste", Toast.LENGTH_SHORT).show();
+                        return false;
+                    }
+                });
+
+                // adding on click listener to WindowInfo of google maps
+                //Vai para o EventsDetailsFragments correspondent
+                googleMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+                    @Override
+                    public void onInfoWindowClick(Marker marker) {
+                        String markerName = marker.getTitle();
+                        DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Events");
+                        reference.addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                                for (DataSnapshot snapshot : dataSnapshot.getChildren()){
+
+                                    final String a = snapshot.child("name").getValue().toString();
+
+                                    if (markerName.toString().equals(a)){
+
+                                        final String n1 =  snapshot.child("id").getValue().toString();
+                                        Bundle bundle = new Bundle();
+                                        FragmentManager fm = getFragmentManager();
+                                        FragmentTransaction ft = fm.beginTransaction();
+                                        EventsDetailsFragment llf = new EventsDetailsFragment();
+                                        bundle.putString("message", n1.toString());
+                                        llf.setArguments(bundle);
+                                        ft.replace(R.id.container, llf);
+                                        ft.commit();
+
+                                    }
+                                }
+
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
+                            }
+                        });
+
+                    }
+                });
             }
 
             @Override
@@ -170,6 +240,8 @@ public class MapsFragment extends Fragment {
 
         return latLng;
     }
+
+
 
 
 

@@ -2,7 +2,29 @@ package com.example.cm07project;
 
 public class Places {
 
-    String streetAdress,state,country,event_name;
+    String streetAdress;
+    String state;
+    String country;
+    String event_name;
+    String date;
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getOrg() {
+        return org;
+    }
+
+    public void setOrg(String org) {
+        this.org = org;
+    }
+
+    String org;
 
     public String getEvent_name() {
         return event_name;
