@@ -80,8 +80,7 @@ public class MainActivity extends AppCompatActivity {
             }
             return true;
         });
-        bottomNavigationView.setSelectedItemId(R.id.navigation_profile);
-
+       // bottomNavigationView.setSelectedItemId(R.id.navigation_profile);
 
 
 
