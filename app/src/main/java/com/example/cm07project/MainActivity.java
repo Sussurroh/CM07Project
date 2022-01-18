@@ -53,8 +53,10 @@ public class MainActivity extends AppCompatActivity {
             int id = item.getItemId();
             switch(id){
                 case(R.id.navigation_messages):
-                    MessagesFragment messagesFragment = new MessagesFragment();
-                    fm.beginTransaction().replace(R.id.container, messagesFragment).commit();
+//                    MessagesFragment messagesFragment = new MessagesFragment();
+//                    fm.beginTransaction().replace(R.id.container, messagesFragment).commit();
+                    LastChatsFragment lastChatsFragment = new LastChatsFragment();
+                    fm.beginTransaction().replace(R.id.container, lastChatsFragment).commit();
                     break;
 
                 case(R.id.navigation_map):
