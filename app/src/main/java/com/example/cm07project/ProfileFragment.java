@@ -39,11 +39,9 @@ public class ProfileFragment extends Fragment {
     private FirebaseUser user;
     private DatabaseReference reference;
     private String userid;
-    TextView imageView;
+    //TextView imageView;
     private Button logout;
     private Button addbtn;
-    private EditText itemText;
-    private ListView listView;
 
 
 
