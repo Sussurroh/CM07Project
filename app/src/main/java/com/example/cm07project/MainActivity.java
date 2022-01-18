@@ -2,6 +2,7 @@ package com.example.cm07project;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -41,15 +42,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-
-
-
-        FragmentManager fm = getSupportFragmentManager();
-
         mAuth = FirebaseAuth.getInstance();
-
+        FragmentManager fm = getSupportFragmentManager();
         bottomNavigationView = findViewById(R.id.nav_view);
+
         bottomNavigationView.setOnItemSelectedListener(item -> {
             for(int i = 0; i < fm.getBackStackEntryCount(); i++) {
                 fm.popBackStack();
@@ -83,8 +79,6 @@ public class MainActivity extends AppCompatActivity {
             }
             return true;
         });
-       // bottomNavigationView.setSelectedItemId(R.id.navigation_profile);
-
 
 
     }
