@@ -1,74 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ProfileFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Profile Fragment" />
 
     <TextView
-        android:id="@+id/firstnametitle"
-        android:layout_width="wrap_content"
+        android:id="@+id/namevalue"
+        android:textColor="@color/black"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40sp"
-        android:text="Firstname:" />
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/firstnamevalue"
-        android:layout_width="75dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="120dp"
-        android:layout_marginTop="40sp"
-        android:textSize="20sp" />
-    <TextView
-        android:id="@+id/lastnametitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="80sp"
-        android:text="Lastname:" />
-    <TextView
-        android:id="@+id/lastnamevalue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="80sp"
-        android:layout_marginLeft="80sp"
-        />
 
-    <TextView
-        android:id="@+id/emailtitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="120sp"
-        android:text="Email:" />
     <TextView
         android:id="@+id/emailvalue"
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="120sp"
-        android:layout_marginLeft="80sp"
-        />
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="@+id/namevalue"
+        app:layout_constraintTop_toBottomOf="@+id/namevalue" />
 
     <Button
         android:id="@+id/signOut"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/orangelight"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="LogOut"
         android:textSize="10sp"
-        android:textColor="#ffff"
-        android:layout_marginTop="150sp"
-        android:text="LogOut" />
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ListView
-        android:layout_marginTop="190dp"
+        android:id="@+id/myproductsView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="100dp"
         android:padding="10dp"
-        android:id="@+id/listView"/>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/emailvalue" />
 
 
-
-</FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

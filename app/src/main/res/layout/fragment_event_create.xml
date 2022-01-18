@@ -22,34 +22,35 @@
         app:layout_constraintVertical_bias="0.481"
         tools:layout_editor_absoluteX="123dp" />
 
+
     <TextView
         android:id="@+id/titleText"
-        android:textColor="@color/black"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Criar Evento"
+        android:textColor="@color/black"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/eventnameedit"
+        app:layout_constraintHorizontal_bias="0.089"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.041" />
+        app:layout_constraintVertical_bias="0.044" />
 
     <EditText
         android:id="@+id/eventnameedit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="216dp"
         android:ems="8"
         android:hint="Nome do Evento"
-        android:minHeight="30dp"
+        android:minHeight="48dp"
         app:layout_constraintBottom_toBottomOf="parent"
+
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.115"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/titleText"
         app:layout_constraintTop_toBottomOf="@+id/titleText"
         app:layout_constraintVertical_bias="0.057" />
-
 
     <EditText
         android:id="@+id/eventdescedit"
@@ -60,62 +61,64 @@
         android:minHeight="48dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintHorizontal_bias="0.509"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/eventnameedit"
-        app:layout_constraintVertical_bias="0.523" />
+        app:layout_constraintTop_toBottomOf="@+id/rua_edit"
+        app:layout_constraintVertical_bias="0.201" />
 
     <EditText
         android:id="@+id/org_edit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="58dp"
         android:layout_marginBottom="488dp"
         android:ems="17"
         android:hint="Organização"
         android:minHeight="48dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/date_edit"
         app:layout_constraintHorizontal_bias="0.49"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="@+id/eventnameedit"
+        app:layout_constraintTop_toBottomOf="@+id/eventnameedit" />
 
     <EditText
         android:id="@+id/date_edit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="592dp"
         android:ems="8"
         android:hint="Data"
         android:minHeight="48dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/eventnameedit"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.888"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.404"
+        app:layout_constraintStart_toEndOf="@+id/eventnameedit" />
 
     <EditText
         android:id="@+id/rua_edit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
         android:layout_marginBottom="376dp"
         android:ems="8"
         android:hint="Morada"
         android:minHeight="48dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.115"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/org_edit"
+        app:layout_constraintTop_toBottomOf="@+id/org_edit" />
 
     <EditText
         android:id="@+id/district_edit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="376dp"
         android:ems="8"
         android:hint="Distrito/Concelho"
         android:minHeight="48dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.888"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintBottom_toBottomOf="@+id/rua_edit"
+        app:layout_constraintEnd_toEndOf="@+id/org_edit"
+        app:layout_constraintHorizontal_bias="0.995"
+        app:layout_constraintStart_toEndOf="@+id/rua_edit" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

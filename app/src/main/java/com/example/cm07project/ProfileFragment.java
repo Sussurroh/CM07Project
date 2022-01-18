@@ -14,10 +14,8 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -52,9 +50,8 @@ public class ProfileFragment extends Fragment {
 
 
         ViewGroup root = (ViewGroup) inflater.inflate(R.layout.fragment_profile, null);
-        final TextView but = (TextView) root.findViewById(R.id.firstnamevalue);
-        final TextView but2 = (TextView) root.findViewById(R.id.lastnamevalue);
-        final TextView but3 = (TextView) root.findViewById(R.id.emailvalue);
+        final TextView nameView = (TextView) root.findViewById(R.id.namevalue);
+        final TextView emailView = (TextView) root.findViewById(R.id.emailvalue);
         logout = root.findViewById(R.id.signOut);
 
 
@@ -64,12 +61,10 @@ public class ProfileFragment extends Fragment {
                 User userprofile = snapshot.getValue(User.class);
 
                 if (userprofile != null) {
-                    String firstname = userprofile.firstname;
-                    String lastname = userprofile.lastname;
+                    String firstname = userprofile.firstname + " " + userprofile.lastname;
                     String email = userprofile.email;
-                    but.setText(firstname);
-                    but2.setText(lastname);
-                    but3.setText(email);
+                    nameView.setText(firstname);
+                    emailView.setText(email);
                 }
             }
 
@@ -88,15 +83,15 @@ public class ProfileFragment extends Fragment {
 
             }
         });
-
-        /** List view dos eventos que o user participa **/
+/*
+         List view dos eventos que o user participa
         ListView listView = (ListView) root.findViewById(R.id.listView);
         final ArrayList<String> list = new ArrayList<>();
         final ArrayAdapter adapter = new ArrayAdapter<String>(root.getContext(), R.layout.simple_list_item_1, list);
         listView.setAdapter(adapter);
-
+/*
         /** 1o vai ver o user id com a tabela Users para saber a info do mail**/
-        reference.child(userid).addListenerForSingleValueEvent(new ValueEventListener() {
+      /*  reference.child(userid).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 User userprofile = snapshot.getValue(User.class);
@@ -105,8 +100,8 @@ public class ProfileFragment extends Fragment {
                     String firstname = userprofile.firstname;
                     String lastname = userprofile.lastname;
                     final String email = userprofile.email;
-                    /** Depois de ter o email do userid vai ver a tabela People aonde tem esse email para ver
-                     * a que evento_id corresponde*/
+                    / Depois de ter o email do userid vai ver a tabela People aonde tem esse email para ver
+                     * a que evento_id corresponde/
                     DatabaseReference reference2 = FirebaseDatabase.getInstance().getReference().child("People");
                     reference2.addValueEventListener(new ValueEventListener() {
                         @Override
@@ -116,9 +111,9 @@ public class ProfileFragment extends Fragment {
 
                                 final String meventid = snapshot.child("eventid").getValue().toString();
                                 final String mmail = snapshot.child("email").getValue().toString();
-                                /** Se o mail do user e o email da pessoa que participa no
+                                Se o mail do user e o email da pessoa que participa no
                                  * evento sao iguais -> vai buscar a tabela Event o nome do evento
-                                 * para mostrar na listView**/
+                                 * para mostrar na listView/
                                 if (mmail.equals(email)){
                                     //list.add(meventid);
                                     DatabaseReference reference = FirebaseDatabase.getInstance().getReference().child("Events");
@@ -169,10 +164,10 @@ public class ProfileFragment extends Fragment {
             public void onCancelled(@NonNull DatabaseError error) {
                 // Toast.makeText(ProfileFragment.this, "Profile Failed:" , Toast.LENGTH_SHORT).show();
             }
-        });
-
+        });*/
+/*
         DatabaseReference reference4 = FirebaseDatabase.getInstance().getReference("Events");
-/** Vai fzaer com que cada item se torne clickable**/
+Vai fzaer com que cada item se torne clickable
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -215,7 +210,7 @@ public class ProfileFragment extends Fragment {
                 });
             }
 
-        });
+        });*/
 
 
 
