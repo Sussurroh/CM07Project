@@ -51,6 +51,9 @@ public class MainActivity extends AppCompatActivity {
 
         bottomNavigationView = findViewById(R.id.nav_view);
         bottomNavigationView.setOnItemSelectedListener(item -> {
+            for(int i = 0; i < fm.getBackStackEntryCount(); i++) {
+                fm.popBackStack();
+            }
             int id = item.getItemId();
             switch(id){
                 case(R.id.navigation_messages):

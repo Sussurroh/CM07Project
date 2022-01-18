@@ -76,6 +76,7 @@ public class EventCreateFragment extends Fragment {
                             FragmentTransaction ft = fm.beginTransaction();
                             EventsFragment llf = new EventsFragment();
                             ft.replace(R.id.container, llf);
+                            ft.addToBackStack("tag");
                             ft.commit();
                         }else {
                             Toast.makeText(getActivity(), "Evento Failed:" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();

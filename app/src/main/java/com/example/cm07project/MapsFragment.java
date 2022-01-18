@@ -182,6 +182,7 @@ public class MapsFragment extends Fragment {
                                         bundle.putString("message", n1.toString());
                                         llf.setArguments(bundle);
                                         ft.replace(R.id.container, llf);
+                                        ft.addToBackStack("tag");
                                         ft.commit();
 
                                     }

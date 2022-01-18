@@ -98,6 +98,7 @@ public class EventsDetailsFragment extends Fragment {
                 bundle.putString("message", strtext.toString());
                 llf.setArguments(bundle);
                 ft.replace(R.id.container, llf);
+                ft.addToBackStack("tag");
                 ft.commit();
             }
         });
@@ -111,6 +112,7 @@ public class EventsDetailsFragment extends Fragment {
                 bundle.putString("message", strtext.toString());
                 llf.setArguments(bundle);
                 ft.replace(R.id.container, llf);
+                ft.addToBackStack("tag");
                 ft.commit();
             }
         });
