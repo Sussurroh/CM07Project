@@ -71,7 +71,7 @@ public class ProductsFragment extends Fragment {
 
         SearchManager searchManager = (SearchManager) getActivity().getSystemService(Context.SEARCH_SERVICE);
         searchView = (SearchView) root.findViewById(R.id.searchView);
-        searchView.setSearchableInfo(searchManager.getSearchableInfo(getActivity().getComponentName()));
+        //searchView.setSearchableInfo(searchManager.getSearchableInfo(getActivity().getComponentName()));
         searchView.setIconifiedByDefault(false);
 
         root.findViewById(R.id.itemcreatebutton).setOnClickListener(new View.OnClickListener() {
@@ -131,15 +131,19 @@ public class ProductsFragment extends Fragment {
                 if(list.contains(query)){
                     adapter.getFilter().filter(query);
                 }else{
-                    Toast.makeText(getActivity(), "No matches found",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(), "Pesquisa exata não encontrada",Toast.LENGTH_LONG).show();
                     loadList();
                 }
+                adapter.notifyDataSetChanged();
                 return false;
             }
 
             @Override
             public boolean onQueryTextChange(String newText) {
+
+                searchList(newText);
                 //    adapter.getFilter().filter(newText);
+                adapter.notifyDataSetChanged();
                 return false;
             }
         });
@@ -155,6 +159,40 @@ public class ProductsFragment extends Fragment {
         for(String s: list) {
             listdisplay.add(s);
         }
+        adapter.notifyDataSetChanged();
+    }
+
+    private void searchList(String search) {
+        listdisplay.clear();
+
+        for(String s: list) {
+            if(contains(s,search)) {
+                listdisplay.add(s);
+            }
+
+        }
+        adapter.notifyDataSetChanged();
+    }
+
+    private boolean contains(String result, String key) {
+        result = result.toLowerCase().replace(" ", "");
+        key = key.toLowerCase().replace(" ", "");
+
+        // use a char array
+        char[] letters = key.toCharArray();
+
+        // loop through it
+        for (int i= 0; i < letters.length; i++) {
+            if (i > letters.length - 4) {
+                return result.contains(key.substring(i));
+            }
+
+            // remove the first part of the string, so that we're searching for
+            // letters that exist in a string in order they appear in the key.
+            result = result.substring(i);
+        }
+
+        return true;
     }
 
 }
