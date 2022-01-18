@@ -107,6 +107,7 @@ public class EventsFragment extends Fragment {
                                 bundle.putString("message", n1.toString());
                                 llf.setArguments(bundle);
                                 ft.replace(R.id.container, llf);
+                                ft.addToBackStack("tag");
                                 ft.commit();
                                 //Toast.makeText(getActivity(), "Value: "+n1.toString(), Toast.LENGTH_SHORT).show();
                             }
@@ -138,6 +139,7 @@ public class EventsFragment extends Fragment {
                 EventCreateFragment llf = new EventCreateFragment();
 
                 ft.replace(R.id.container, llf);
+                ft.addToBackStack("tag");
                 ft.commit();
             }
         });

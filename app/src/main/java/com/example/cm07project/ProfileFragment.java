@@ -200,6 +200,7 @@ public class ProfileFragment extends Fragment {
                                 bundle.putString("message", n1.toString());
                                 llf.setArguments(bundle);
                                 ft.replace(R.id.container, llf);
+                                ft.addToBackStack("tag");
                                 ft.commit();
                                 //Toast.makeText(getActivity(), "Value: "+n1.toString(), Toast.LENGTH_SHORT).show();
                             }
