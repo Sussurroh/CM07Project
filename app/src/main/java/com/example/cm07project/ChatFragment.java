@@ -78,6 +78,7 @@ public class ChatFragment extends Fragment {
                 Toast.makeText(getContext(),
                         "You cant send an empty message",Toast.LENGTH_SHORT).show();
             }
+            text_send.setText("");
         });
 
         reference.addValueEventListener(new ValueEventListener() {
