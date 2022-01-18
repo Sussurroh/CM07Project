@@ -17,9 +17,8 @@
 
     <item
         android:id="@+id/navigation_products"
-        android:icon="@android:drawable/ic_menu_search"
-        android:title="Products"
-        />
+        android:icon="?android:attr/actionModeWebSearchDrawable"
+        android:title="Items" />
 
     <item
         android:id="@+id/navigation_profile"

@@ -5,6 +5,33 @@ public class Products {
 
     public String userID;
     public String item;
+    public String desc;
+    public String category;
+    public int quantity;
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public String getDesc() {
+        return desc;
+    }
 
     public String getUserID() {
         return userID;
@@ -18,8 +45,11 @@ public class Products {
         this.item = item;
     }
 
-    public Products(String userID, String item) {
+    public Products(String userID, String item, String desc, String category, int quantity) {
         this.userID = userID;
         this.item = item;
+        this.desc = desc;
+        this.category = category;
+        this.quantity = quantity;
     }
 }

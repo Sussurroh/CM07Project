@@ -94,12 +94,18 @@ public class ProfileFragment extends Fragment {
         });
 
         addbtn = root.findViewById(R.id.addProduct);
-        itemText = root.findViewById(R.id.itemName);
 
         addbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                createItem();
+                FragmentManager fm = getFragmentManager();
+                FragmentTransaction ft = fm.beginTransaction();
+
+                CreateItemFragment llf = new CreateItemFragment();
+
+                ft.replace(R.id.container, llf);
+                ft.addToBackStack("tag");
+                ft.commit();
 
             }
 
@@ -123,11 +129,8 @@ public class ProfileFragment extends Fragment {
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()){
                     final String muserid = snapshot.child("userID").getValue().toString();
 
-                    Log.i("UID",userid);
-                    Log.i("DB", muserid);
 
                     if (muserid.equals(userid)){
-                        Log.i("DB",snapshot.child("item").getValue().toString());
                         list.add(snapshot.child("item").getValue().toString());
                     }
 
@@ -146,29 +149,6 @@ public class ProfileFragment extends Fragment {
 
         return root;
 
-    }
-
-    private void createItem() {
-        String item = itemText.getText().toString();
-
-
-        if (!item.isEmpty()){
-            Products itemP = new Products(userid, item);
-
-            FirebaseDatabase.getInstance().getReference("Products")
-                    .push()
-                    .setValue(itemP).addOnCompleteListener(new OnCompleteListener<Void>() {
-
-                @Override
-                public void onComplete(@NonNull Task<Void> task) {
-                    if (task.isSuccessful()){
-                        Toast.makeText(getActivity(), "Item registered", Toast.LENGTH_SHORT).show();
-                    }else {
-                        Toast.makeText(getActivity(), "Item Failed:" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                }
-            });
-        }
     }
 
 
