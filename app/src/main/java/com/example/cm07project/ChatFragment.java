@@ -4,6 +4,8 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -23,17 +25,24 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 
 public class ChatFragment extends Fragment {
 
     private final String otherUid;
     private final String otherName;
+    private List<Chat> mchat;
     private FirebaseUser fuser;
+    private DatabaseReference reference;
+    private MessageAdapter messageAdapter;
+
 
     ImageButton btn_send;
     EditText text_send;
+    RecyclerView recyclerView;
 
     public ChatFragment(String otherUid, String name) {
         this.otherUid = otherUid;
@@ -44,6 +53,7 @@ public class ChatFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.fuser = FirebaseAuth.getInstance().getCurrentUser();
+        reference = FirebaseDatabase.getInstance().getReference("Users").child(fuser.getUid());
     }
 
     @Override
@@ -54,6 +64,11 @@ public class ChatFragment extends Fragment {
         tv.setText(this.otherName);
         this.btn_send = v.findViewById(R.id.btn_send);
         this.text_send = v.findViewById(R.id.text_send);
+        this.recyclerView = v.findViewById(R.id.recycler_view);
+        this.recyclerView.setHasFixedSize(true);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        linearLayoutManager.setStackFromEnd(true);
+        this.recyclerView.setLayoutManager(linearLayoutManager);
 
         btn_send.setOnClickListener(view -> {
             String msg = text_send.getText().toString();
@@ -62,6 +77,20 @@ public class ChatFragment extends Fragment {
             } else {
                 Toast.makeText(getContext(),
                         "You cant send an empty message",Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                User user = dataSnapshot.getValue(User.class);
+
+                readMesagges(fuser.getUid(), otherUid);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
             }
         });
 
@@ -77,6 +106,33 @@ public class ChatFragment extends Fragment {
         hashMap.put("message", message);
 
         reference.child("Chats").push().setValue(hashMap);
+    }
+
+    private void readMesagges(final String myid, final String userid){
+        mchat = new ArrayList<>();
+
+        reference = FirebaseDatabase.getInstance().getReference("Chats");
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                mchat.clear();
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()){
+                    Chat chat = snapshot.getValue(Chat.class);
+                    if (chat.getReceiver().equals(myid) && chat.getSender().equals(userid) ||
+                            chat.getReceiver().equals(userid) && chat.getSender().equals(myid)){
+                        mchat.add(chat);
+                    }
+
+                    messageAdapter = new MessageAdapter(getContext(), mchat);
+                    recyclerView.setAdapter(messageAdapter);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 
 }
