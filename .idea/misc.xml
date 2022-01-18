@@ -6,18 +6,15 @@
         <entry key="..\:/Users/Rodrigo/AndroidStudioProjects/CM07Project/app/src/main/res/layout/activity_login.xml" value="0.22552083333333334" />
         <entry key="..\:/Users/Rodrigo/AndroidStudioProjects/CM07Project/app/src/main/res/layout/activity_main.xml" value="0.275" />
         <entry key="..\:/Users/Rodrigo/AndroidStudioProjects/CM07Project/app/src/main/res/layout/event_row.xml" value="0.4" />
-        <entry key="..\:/Users/Rodrigo/AndroidStudioProjects/CM07Project/app/src/main/res/layout/fragment_chat.xml" value="0.4" />
         <entry key="..\:/Users/Rodrigo/AndroidStudioProjects/CM07Project/app/src/main/res/layout/fragment_event_create.xml" value="0.536" />
         <entry key="..\:/Users/Rodrigo/AndroidStudioProjects/CM07Project/app/src/main/res/layout/fragment_events.xml" value="0.536" />
         <entry key="..\:/Users/Rodrigo/AndroidStudioProjects/CM07Project/app/src/main/res/layout/fragment_events__participation.xml" value="0.22552083333333334" />
         <entry key="..\:/Users/Rodrigo/AndroidStudioProjects/CM07Project/app/src/main/res/layout/fragment_events_details.xml" value="0.22552083333333334" />
         <entry key="..\:/Users/Rodrigo/AndroidStudioProjects/CM07Project/app/src/main/res/layout/fragment_events_donations.xml" value="0.22552083333333334" />
         <entry key="..\:/Users/Rodrigo/AndroidStudioProjects/CM07Project/app/src/main/res/layout/fragment_maps.xml" value="0.22552083333333334" />
-        <entry key="..\:/Users/Rodrigo/AndroidStudioProjects/CM07Project/app/src/main/res/layout/fragment_messages.xml" value="0.536" />
-        <entry key="..\:/Users/Rodrigo/AndroidStudioProjects/CM07Project/app/src/main/res/layout/user_item.xml" value="0.536" />
         <entry key="..\:/Users/Rodrigo/AndroidStudioProjects/CM07Project/app/src/main/res/menu/bottom_nav_menu.xml" value="0.4" />
         <entry key="..\:/Users/Toshiba/Desktop/CM07Project/app/src/main/res/layout/activity_login.xml" value="0.33" />
-        <entry key="..\:/Users/Toshiba/Desktop/CM07Project/app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="..\:/Users/Toshiba/Desktop/CM07Project/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Users/Toshiba/Desktop/CM07Project/app/src/main/res/layout/activity_register.xml" value="0.18854166666666666" />
         <entry key="..\:/Users/Toshiba/Desktop/CM07Project/app/src/main/res/layout/event_row.xml" value="0.25" />
         <entry key="..\:/Users/Toshiba/Desktop/CM07Project/app/src/main/res/layout/fragment_create_item.xml" value="0.22" />
@@ -26,18 +23,18 @@
         <entry key="..\:/Users/Toshiba/Desktop/CM07Project/app/src/main/res/layout/fragment_maps.xml" value="0.18854166666666666" />
         <entry key="..\:/Users/Toshiba/Desktop/CM07Project/app/src/main/res/layout/fragment_messages.xml" value="0.18854166666666666" />
         <entry key="..\:/Users/Toshiba/Desktop/CM07Project/app/src/main/res/layout/fragment_products.xml" value="0.1" />
+        <entry key="..\:/Users/Toshiba/Desktop/CM07Project/app/src/main/res/layout/fragment_profile.xml" value="0.3080568720379147" />
         <entry key="..\:/Users/Toshiba/Desktop/CM07Project/app/src/main/res/layout/fragment_stock.xml" value="0.33" />
         <entry key="..\:/Users/Toshiba/Desktop/CM07Project/app/src/main/res/layout/list_item.xml" value="0.18854166666666666" />
         <entry key="..\:/Users/Toshiba/Desktop/CM07Project/app/src/main/res/layout/simple_list_item_1.xml" value="0.1015625" />
         <entry key="..\:/Users/Toshiba/Desktop/CM07Project/app/src/main/res/layout/snippetmapstest.xml" value="0.18" />
         <entry key="..\:/Users/Toshiba/Desktop/CM07Project/app/src/main/res/menu/bottom_nav_menu.xml" value="0.33" />
-        <entry key="app/src/main/res/drawable/ic_baseline_event_24.xml" value="0.30833333333333335" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.18" />
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/event_row.xml" value="0.335" />
-        <entry key="app/src/main/res/layout/fragment_event_create.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/fragment_events.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/event_row.xml" value="0.14356884057971014" />
+        <entry key="app/src/main/res/layout/fragment_event_create.xml" value="0.3826020430014882" />
+        <entry key="app/src/main/res/layout/fragment_events.xml" value="0.10740740740740741" />
         <entry key="app/src/main/res/layout/fragment_events__participation.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_events_details.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_events_donations.xml" value="0.14356884057971014" />
