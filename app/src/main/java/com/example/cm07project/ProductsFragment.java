@@ -16,6 +16,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -121,6 +122,49 @@ public class ProductsFragment extends Fragment {
             public void onCancelled(@NonNull DatabaseError error) {
 
             }
+        });
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                //valor do nome da lista Exemplo:Natal
+                final String selectedFromList = (String) listView.getItemAtPosition(position);
+
+                reference.orderByChild(selectedFromList).addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                        for (DataSnapshot snapshot : dataSnapshot.getChildren()){
+
+                            final String a = snapshot.child("item").getValue().toString();
+
+                            //se o nome do item selecionado for igual a pesquisa entra e encontra o id desse nome do evento no db
+                            //e muda de fragmaneto com informacao do id
+                            if (selectedFromList.toString().equals(a)){
+
+                                final String n1 =  snapshot.child("id").getValue().toString();
+                                Bundle bundle = new Bundle();
+                                FragmentManager fm = getFragmentManager();
+                                FragmentTransaction ft = fm.beginTransaction();
+                                ItemDetailsFragment llf = new ItemDetailsFragment();
+                                bundle.putString("message", n1.toString());
+                                llf.setArguments(bundle);
+                                ft.replace(R.id.container, llf);
+                                ft.addToBackStack("tag");
+                                ft.commit();
+                            }
+                        }
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+            }
+
         });
 
 
