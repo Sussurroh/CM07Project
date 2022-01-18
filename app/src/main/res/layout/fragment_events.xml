@@ -3,12 +3,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".EventsFragment">
+    tools:context=".EventsFragment"
+    android:background="@color/greenblue">
 
    <TextView
        android:layout_width="match_parent"
        android:layout_height="match_parent"
-       android:text="Lista de Eventos (carregar no item para obter mais informações)"
+       android:text="Eventos"
+       android:textSize="20sp"
+       android:layout_marginTop="20px"
+       android:layout_marginLeft="20px"
+       android:textColor="@color/black"
        android:id="@+id/nome"/>
 
 
@@ -32,7 +37,12 @@
        android:id="@+id/eventcreatbutton"
        android:layout_width="wrap_content"
        android:layout_height="wrap_content"
-       android:text="Criar Evento" />
+       android:text="Criar Evento"
+       android:textColor="@color/black"
+       android:backgroundTint="@color/orangelight"
+       android:layout_marginTop="90px"
+       android:layout_marginLeft="20px"/>
+
 
 
 </FrameLayout>

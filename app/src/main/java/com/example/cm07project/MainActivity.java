@@ -68,9 +68,9 @@ public class MainActivity extends AppCompatActivity {
                     fm.beginTransaction().replace(R.id.container, eventsFragment).commit();
                     break;
 
-                case(R.id.navigation_stock):
-                    StockFragment stockFragment = new StockFragment();
-                    fm.beginTransaction().replace(R.id.container, stockFragment).commit();
+                case(R.id.navigation_products):
+                    ProductsFragment productsFragment = new ProductsFragment();
+                    fm.beginTransaction().replace(R.id.container, productsFragment).commit();
                     break;
 
                 case(R.id.navigation_profile):
