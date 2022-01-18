@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ProfileFragment">
+    tools:context=".ProfileFragment"
+    android:background="@color/greenblue">
 
 
     <TextView
@@ -41,10 +42,11 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ListView
+        android:background="@color/whitegreen"
         android:id="@+id/myproductsView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="220dp"
         android:padding="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -72,9 +74,20 @@
         android:layout_marginTop="16dp"
         android:ems="10"
         android:inputType="text"
-        android:text="Item Name"
+        android:hint="Item Name"
         app:layout_constraintStart_toStartOf="@+id/emailvalue"
         app:layout_constraintTop_toBottomOf="@+id/emailvalue" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:text="My Items"
+        android:textColor="@color/black"
+        android:textSize="25sp"
+        app:layout_constraintStart_toStartOf="@+id/itemName"
+        app:layout_constraintTop_toBottomOf="@+id/itemName" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
