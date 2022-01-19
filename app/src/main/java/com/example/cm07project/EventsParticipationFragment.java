@@ -31,20 +31,30 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EventsParticipationFragment extends Fragment {
+    // Firebase
     private DatabaseReference reference;
     private DatabaseReference reference2;
     private FirebaseUser user;
-    private String userid;
+
+    // Views
     private EditText edit;
     private Button addd;
     private ListView listView;
+
+    // Logic variables
+    private String userid;
+    private String userEmail;
     private List<Pair<String,Integer>> emList;
+    private boolean isParticipating;
+    private boolean firstTime;
+
+
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         ViewGroup root = (ViewGroup) inflater.inflate(R.layout.fragment_events__participation, null);
-
+        firstTime = false;
 
         addd = root.findViewById(R.id.participar);
 
@@ -71,6 +81,7 @@ public class EventsParticipationFragment extends Fragment {
 
                         int index = list.size()-1;
                         emList.add(new Pair<>(snapshot.child("email").getValue().toString(),index));
+
                     }
 
                     //list.add(a);
@@ -94,39 +105,66 @@ public class EventsParticipationFragment extends Fragment {
         user = FirebaseAuth.getInstance().getCurrentUser();
         userid = user.getUid();
 
-        addd.setOnClickListener(v
-                -> reference2.child(userid).addListenerForSingleValueEvent(new ValueEventListener(){
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                User userprofile = snapshot.getValue(User.class);
-                if (userprofile != null) {
-                    String firstname = userprofile.firstname;
-                    String lastname = userprofile.lastname;
-                    String email = userprofile.email;
-                    String fullname = firstname +" "+lastname;
+        addd.setOnClickListener(v-> {
+            if(!isParticipating){
+                reference2.child(userid).addListenerForSingleValueEvent(new ValueEventListener(){
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        User userprofile = snapshot.getValue(User.class);
+                        if (userprofile != null) {
+                            String firstname = userprofile.firstname;
+                            String lastname = userprofile.lastname;
+                            String email = userprofile.email;
+                            String fullname = firstname +" "+lastname;
 
-                    People event = new People(strtext.toString(),fullname,email);
+                            People event = new People(strtext.toString(),fullname,email);
 
-                    FirebaseDatabase.getInstance().getReference("People")
-                            //.child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                            .push()
-                            .setValue(event).addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            if (task.isSuccessful()){
-                                Toast.makeText(getActivity(), "Participação registada", Toast.LENGTH_SHORT).show();
-                            }else {
-                                Toast.makeText(getActivity(), "Participação Failed:" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                            FirebaseDatabase.getInstance().getReference("People")
+                                    //.child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+                                    .push()
+                                    .setValue(event).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if (task.isSuccessful()){
+                                        Toast.makeText(getActivity(), "Participação registada", Toast.LENGTH_SHORT).show();
+                                    }else {
+                                        Toast.makeText(getActivity(), "Participação Failed:" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
+                        }
+                    }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                    }
+                });
+                isParticipating = !isParticipating;
+                addd.setText("Remover");
+            } else {
+                reference.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        for (DataSnapshot snapshot : dataSnapshot.getChildren()){
+                            final String a = snapshot.child("eventid").getValue().toString();
+                            final String e = snapshot.child("email").getValue().toString();
+                            if (strtext.toString().equals(a) && userEmail.equals(e)){
+                                snapshot.getRef().removeValue();
                             }
                         }
-                    });
-                }
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+                isParticipating = !isParticipating;
+                addd.setVisibility(View.INVISIBLE);
 
             }
-        }));
+
+        });
 
 
         return root;
@@ -138,18 +176,18 @@ public class EventsParticipationFragment extends Fragment {
         }
 
         String myid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        Log.i("ABC","emList no inicio: " + emList.toString());
         DatabaseReference reference3 = FirebaseDatabase.getInstance().getReference().child("Users");
         reference3.orderByChild("email").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     User tempU = snapshot.getValue(User.class);
                     String tempEmail = tempU.getEmail();
 
                     for(int i = 0; i < emList.size(); i++){
                         Pair<String,Integer> p = emList.get(i);
-//                        Log.i("ABC","this mail: " + tempEmail + " other email: " + p.first);
+
                         if (tempEmail.equals(p.first)) {
                             View childView = listView.getChildAt(p.second);
 //                            emList.remove(i);
@@ -164,6 +202,12 @@ public class EventsParticipationFragment extends Fragment {
                                             .addToBackStack("Profile").commit();
                                 });
                             } else {
+                                userEmail = tempEmail;
+                                if(firstTime){
+                                    isParticipating = true;
+                                    addd.setText("Remove");
+                                    firstTime = !firstTime;
+                                }
                                 childView.setOnClickListener(view -> {
                                     for(int k = 0; k < fm.getBackStackEntryCount(); k++) {
                                         fm.popBackStack();
@@ -177,7 +221,6 @@ public class EventsParticipationFragment extends Fragment {
                     }
 
                 }
-//                Log.i("ABC","emList no fim: " + emList.toString());
             }
 
             @Override

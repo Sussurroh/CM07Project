@@ -3,41 +3,35 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Rodrigo/AndroidStudioProjects/CM07Project/app/src/main/res/drawable/background_left.xml" value="0.2462962962962963" />
+        <entry key="..\:/Users/Rodrigo/AndroidStudioProjects/CM07Project/app/src/main/res/drawable/background_right.xml" value="0.2520833333333333" />
+        <entry key="..\:/Users/Rodrigo/AndroidStudioProjects/CM07Project/app/src/main/res/drawable/ic_baseline_location_on_24.xml" value="0.2703125" />
+        <entry key="..\:/Users/Rodrigo/AndroidStudioProjects/CM07Project/app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.2703125" />
         <entry key="..\:/Users/Rodrigo/AndroidStudioProjects/CM07Project/app/src/main/res/layout/activity_login.xml" value="0.22552083333333334" />
-        <entry key="..\:/Users/Rodrigo/AndroidStudioProjects/CM07Project/app/src/main/res/layout/activity_main.xml" value="0.275" />
+        <entry key="..\:/Users/Rodrigo/AndroidStudioProjects/CM07Project/app/src/main/res/layout/activity_main.xml" value="0.264" />
+        <entry key="..\:/Users/Rodrigo/AndroidStudioProjects/CM07Project/app/src/main/res/layout/chat_item_left.xml" value="0.2359375" />
+        <entry key="..\:/Users/Rodrigo/AndroidStudioProjects/CM07Project/app/src/main/res/layout/chat_item_right.xml" value="0.2359375" />
         <entry key="..\:/Users/Rodrigo/AndroidStudioProjects/CM07Project/app/src/main/res/layout/event_row.xml" value="0.4" />
+        <entry key="..\:/Users/Rodrigo/AndroidStudioProjects/CM07Project/app/src/main/res/layout/fragment_chat.xml" value="0.2" />
+        <entry key="..\:/Users/Rodrigo/AndroidStudioProjects/CM07Project/app/src/main/res/layout/fragment_create_item.xml" value="0.22916666666666666" />
         <entry key="..\:/Users/Rodrigo/AndroidStudioProjects/CM07Project/app/src/main/res/layout/fragment_event_create.xml" value="0.536" />
-        <entry key="..\:/Users/Rodrigo/AndroidStudioProjects/CM07Project/app/src/main/res/layout/fragment_events.xml" value="0.536" />
-        <entry key="..\:/Users/Rodrigo/AndroidStudioProjects/CM07Project/app/src/main/res/layout/fragment_events__participation.xml" value="0.22552083333333334" />
+        <entry key="..\:/Users/Rodrigo/AndroidStudioProjects/CM07Project/app/src/main/res/layout/fragment_events.xml" value="0.16262975778546712" />
+        <entry key="..\:/Users/Rodrigo/AndroidStudioProjects/CM07Project/app/src/main/res/layout/fragment_events__participation.xml" value="0.4" />
         <entry key="..\:/Users/Rodrigo/AndroidStudioProjects/CM07Project/app/src/main/res/layout/fragment_events_details.xml" value="0.22552083333333334" />
         <entry key="..\:/Users/Rodrigo/AndroidStudioProjects/CM07Project/app/src/main/res/layout/fragment_events_donations.xml" value="0.22552083333333334" />
+        <entry key="..\:/Users/Rodrigo/AndroidStudioProjects/CM07Project/app/src/main/res/layout/fragment_item_details.xml" value="0.22916666666666666" />
+        <entry key="..\:/Users/Rodrigo/AndroidStudioProjects/CM07Project/app/src/main/res/layout/fragment_last_chats.xml" value="0.19791666666666666" />
+        <entry key="..\:/Users/Rodrigo/AndroidStudioProjects/CM07Project/app/src/main/res/layout/fragment_loading.xml" value="0.4" />
         <entry key="..\:/Users/Rodrigo/AndroidStudioProjects/CM07Project/app/src/main/res/layout/fragment_maps.xml" value="0.22552083333333334" />
+        <entry key="..\:/Users/Rodrigo/AndroidStudioProjects/CM07Project/app/src/main/res/layout/fragment_messages.xml" value="0.536" />
+        <entry key="..\:/Users/Rodrigo/AndroidStudioProjects/CM07Project/app/src/main/res/layout/fragment_products.xml" value="0.22916666666666666" />
+        <entry key="..\:/Users/Rodrigo/AndroidStudioProjects/CM07Project/app/src/main/res/layout/fragment_profile.xml" value="0.21505376344086022" />
+        <entry key="..\:/Users/Rodrigo/AndroidStudioProjects/CM07Project/app/src/main/res/layout/fragment_public_profile.xml" value="0.264" />
+        <entry key="..\:/Users/Rodrigo/AndroidStudioProjects/CM07Project/app/src/main/res/layout/simple_list_item_1.xml" value="0.264" />
+        <entry key="..\:/Users/Rodrigo/AndroidStudioProjects/CM07Project/app/src/main/res/layout/snippetmapstest.xml" value="0.20625" />
+        <entry key="..\:/Users/Rodrigo/AndroidStudioProjects/CM07Project/app/src/main/res/layout/user_item.xml" value="0.536" />
         <entry key="..\:/Users/Rodrigo/AndroidStudioProjects/CM07Project/app/src/main/res/menu/bottom_nav_menu.xml" value="0.4" />
-        <entry key="..\:/Users/Toshiba/Desktop/CM07Project/app/src/main/res/layout/activity_login.xml" value="0.33" />
-        <entry key="..\:/Users/Toshiba/Desktop/CM07Project/app/src/main/res/layout/activity_main.xml" value="0.25" />
-        <entry key="..\:/Users/Toshiba/Desktop/CM07Project/app/src/main/res/layout/activity_register.xml" value="0.18854166666666666" />
-        <entry key="..\:/Users/Toshiba/Desktop/CM07Project/app/src/main/res/layout/chat_item_left.xml" value="0.18854166666666666" />
-        <entry key="..\:/Users/Toshiba/Desktop/CM07Project/app/src/main/res/layout/event_row.xml" value="0.25" />
-        <entry key="..\:/Users/Toshiba/Desktop/CM07Project/app/src/main/res/layout/fragment_chat.xml" value="0.16296296296296298" />
-        <entry key="..\:/Users/Toshiba/Desktop/CM07Project/app/src/main/res/layout/fragment_create_item.xml" value="0.25" />
-        <entry key="..\:/Users/Toshiba/Desktop/CM07Project/app/src/main/res/layout/fragment_event_create.xml" value="0.25" />
-        <entry key="..\:/Users/Toshiba/Desktop/CM07Project/app/src/main/res/layout/fragment_events.xml" value="0.33" />
-        <entry key="..\:/Users/Toshiba/Desktop/CM07Project/app/src/main/res/layout/fragment_events_details.xml" value="0.5" />
-        <entry key="..\:/Users/Toshiba/Desktop/CM07Project/app/src/main/res/layout/fragment_item.xml" value="0.18854166666666666" />
-        <entry key="..\:/Users/Toshiba/Desktop/CM07Project/app/src/main/res/layout/fragment_item_details.xml" value="0.25" />
-        <entry key="..\:/Users/Toshiba/Desktop/CM07Project/app/src/main/res/layout/fragment_item_list.xml" value="0.17447916666666666" />
-        <entry key="..\:/Users/Toshiba/Desktop/CM07Project/app/src/main/res/layout/fragment_maps.xml" value="0.18854166666666666" />
-        <entry key="..\:/Users/Toshiba/Desktop/CM07Project/app/src/main/res/layout/fragment_messages.xml" value="0.18854166666666666" />
-        <entry key="..\:/Users/Toshiba/Desktop/CM07Project/app/src/main/res/layout/fragment_products.xml" value="0.14" />
-        <entry key="..\:/Users/Toshiba/Desktop/CM07Project/app/src/main/res/layout/fragment_profile.xml" value="0.3080568720379147" />
-        <entry key="..\:/Users/Toshiba/Desktop/CM07Project/app/src/main/res/layout/fragment_public_profile.xml" value="0.2" />
-        <entry key="..\:/Users/Toshiba/Desktop/CM07Project/app/src/main/res/layout/fragment_stock.xml" value="0.33" />
-        <entry key="..\:/Users/Toshiba/Desktop/CM07Project/app/src/main/res/layout/list_item.xml" value="0.18854166666666666" />
-        <entry key="..\:/Users/Toshiba/Desktop/CM07Project/app/src/main/res/layout/login_tab_fragment.xml" value="0.18854166666666666" />
-        <entry key="..\:/Users/Toshiba/Desktop/CM07Project/app/src/main/res/layout/signup_tab_fragment.xml" value="0.33" />
-        <entry key="..\:/Users/Toshiba/Desktop/CM07Project/app/src/main/res/layout/simple_list_item_1.xml" value="0.1015625" />
-        <entry key="..\:/Users/Toshiba/Desktop/CM07Project/app/src/main/res/layout/snippetmapstest.xml" value="0.18" />
-        <entry key="..\:/Users/Toshiba/Desktop/CM07Project/app/src/main/res/menu/bottom_nav_menu.xml" value="0.33" />
+        <entry key="..\:/Users/Rodrigo/AndroidStudioProjects/CM07Project/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.2703125" />
         <entry key="app/src/main/res/drawable-hdpi/bg_map_search_bar.xml" value="0.1" />
         <entry key="app/src/main/res/drawable-hdpi/ic_search.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/button_bg.xml" value="0.1" />
