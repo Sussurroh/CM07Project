@@ -61,7 +61,6 @@ public class ProfileFragment extends Fragment {
         final TextView emailView = (TextView) root.findViewById(R.id.emailvalue);
         logout = root.findViewById(R.id.signOut);
 
-
         reference.child(userid).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
