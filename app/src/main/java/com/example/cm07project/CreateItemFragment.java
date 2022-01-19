@@ -63,6 +63,7 @@ public class CreateItemFragment extends Fragment {
 
     private String id;
 
+
     // request code
     private final int PICK_IMAGE_REQUEST = 22;
 
@@ -149,24 +150,26 @@ public class CreateItemFragment extends Fragment {
                 Bitmap bitmapImage = null;
                 try {
                     bitmapImage = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), returnUri);
+
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
                 imageView.setImageBitmap(bitmapImage);
+                filePath = returnUri;
             }
         }
-        //Uri returnUri;
-        //returnUri = data.getData();
     }
 
-    public void UploadImage() {
+    public String UploadImage() {
 
         if (filePath != null) {
             ProgressDialog progressDialog = new ProgressDialog(getContext());
-            progressDialog.setTitle("Image is Uploading...");
+            progressDialog.setTitle("Uploading Item...");
             progressDialog.show();
 
-            StorageReference ref = storageReference.child("images/"+ UUID.randomUUID().toString());
+            String photoid = UUID.randomUUID().toString();
+
+            StorageReference ref = storageReference.child("images/" + photoid);
 
             ref.putFile(filePath)
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
@@ -179,12 +182,15 @@ public class CreateItemFragment extends Fragment {
                            // databaseReference.child("imageid").setValue(imageUploadInfo);
                         }
                     });
+            return photoid;
         }
         else {
 
-            Toast.makeText(getContext(), "Please Select Image or Add Image Name", Toast.LENGTH_LONG).show();
-
+            Toast.makeText(getContext(), "Foto obrigatória", Toast.LENGTH_LONG).show();
+            return "";
         }
+
+
     }
 
     private void createItem() {
@@ -204,34 +210,46 @@ public class CreateItemFragment extends Fragment {
         } else if(mquant.getText().toString().isEmpty()) {
             Toast.makeText(getActivity(), "Descrição obrigatória", Toast.LENGTH_SHORT).show();
 
+        } else if (filePath == null){
+
+            Toast.makeText(getActivity(), "Foto obrigatória", Toast.LENGTH_SHORT).show();
         } else {
             int quant = Integer.parseInt(mquant.getText().toString());
+            id = UUID.randomUUID().toString();
+            String idphoto = UploadImage();
 
-            Products itemP = new Products(UUID.randomUUID().toString(), userid, title,desc, category,quant);
+            if (idphoto.isEmpty()) {
+                Toast.makeText(getActivity(), "Upload Failed", Toast.LENGTH_SHORT).show();
+            } else {
+                Products itemP = new Products(id, userid, title,desc, category,quant,idphoto);
 
-            FirebaseDatabase.getInstance().getReference("Products")
-                    .push()
-                    .setValue(itemP).addOnCompleteListener(new OnCompleteListener<Void>() {
+                FirebaseDatabase.getInstance().getReference("Products")
+                        .push()
+                        .setValue(itemP).addOnCompleteListener(new OnCompleteListener<Void>() {
 
-                @Override
-                public void onComplete(@NonNull Task<Void> task) {
-                    if (task.isSuccessful()){
-                        Toast.makeText(getActivity(), "Item registered", Toast.LENGTH_SHORT).show();
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()){
 
-                        FragmentManager fm = getFragmentManager();
-                        FragmentTransaction ft = fm.beginTransaction();
+                            FragmentManager fm = getFragmentManager();
+                            FragmentTransaction ft = fm.beginTransaction();
 
-                        ProfileFragment llf = new ProfileFragment();
+                            ProfileFragment llf = new ProfileFragment();
 
-                        ft.replace(R.id.container, llf);
-                        ft.addToBackStack("tag");
-                        ft.commit();
+                            ft.replace(R.id.container, llf);
+                            ft.addToBackStack("tag");
+                            ft.commit();
 
-                    }else {
-                        Toast.makeText(getActivity(), "Item Failed:" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                        }else {
+                            Toast.makeText(getActivity(), "Item Failed:" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                        }
                     }
-                }
-            });
+                });
+
+            }
+
+
+
         }
     }
 

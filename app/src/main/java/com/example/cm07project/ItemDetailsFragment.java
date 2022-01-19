@@ -1,5 +1,6 @@
 package com.example.cm07project;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -13,26 +14,39 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.Registry;
+import com.bumptech.glide.annotation.GlideModule;
+import com.bumptech.glide.module.AppGlideModule;
+import com.firebase.ui.storage.images.FirebaseImageLoader;
+import com.google.android.gms.auth.api.signin.internal.Storage;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 
 public class ItemDetailsFragment extends Fragment {
 
     private DatabaseReference reference;
+    private StorageReference storageReference;
     public String userID;
     public TextView username;
     public TextView item;
     public TextView desc;
     public TextView category;
     public TextView quantity;
+    public ImageView imageView;
+    private String idPhoto;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -48,6 +62,8 @@ public class ItemDetailsFragment extends Fragment {
         desc = (TextView) root.findViewById(R.id.descvalue);
         category = (TextView) root.findViewById(R.id.categoryvalue);
         quantity = (TextView) root.findViewById(R.id.quantvalue);
+        imageView = (ImageView) root.findViewById(R.id.imageView);
+
 
 
         reference = FirebaseDatabase.getInstance().getReference("Products");
@@ -58,8 +74,9 @@ public class ItemDetailsFragment extends Fragment {
 
                     final String a = snapshot.child("id").getValue().toString();
                     if (idItem.toString().equals(a)){
-                        //list.add(a);
+                        Log.i("snap", snapshot.child("photoid").getValue().toString());
                         userID = snapshot.child("userID").getValue().toString();
+                        idPhoto = snapshot.child("photoid").getValue().toString();
                         item.setText(snapshot.child("item").getValue().toString());
                         desc.setText(snapshot.child("desc").getValue().toString());
                         category.setText("Categoria: " + snapshot.child("category").getValue().toString());
@@ -68,6 +85,12 @@ public class ItemDetailsFragment extends Fragment {
                     }
 
                 }
+
+                storageReference = FirebaseStorage.getInstance().getReference().child("images/"+ idPhoto);
+
+                GlideApp.with(getContext()).load(storageReference)
+                        .into(imageView);
+
             }
 
             @Override
@@ -95,6 +118,7 @@ public class ItemDetailsFragment extends Fragment {
 
                 }});
 
+            //storage buscar foto
 
 
         return root;

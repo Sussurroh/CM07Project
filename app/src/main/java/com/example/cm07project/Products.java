@@ -9,6 +9,15 @@ public class Products {
     public String desc;
     public String category;
     public int quantity;
+    public String photoid;
+
+    public String getPhotoid() {
+        return photoid;
+    }
+
+    public void setPhotoid(String photoid) {
+        this.photoid = photoid;
+    }
 
     public String getId() {
         return id;
@@ -54,12 +63,13 @@ public class Products {
         this.item = item;
     }
 
-    public Products(String id, String userID, String item, String desc, String category, int quantity) {
+    public Products(String id, String userID, String item, String desc, String category, int quantity, String photoId) {
         this.id =id;
         this.userID = userID;
         this.item = item;
         this.desc = desc;
         this.category = category;
         this.quantity = quantity;
+        this.photoid = photoId;
     }
 }

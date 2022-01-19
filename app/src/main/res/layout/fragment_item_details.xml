@@ -13,7 +13,7 @@
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="284dp"
+        android:layout_marginTop="376dp"
         android:textColor="@color/black"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -50,6 +50,17 @@
         android:layout_marginTop="28dp"
         app:layout_constraintEnd_toEndOf="@+id/descvalue"
         app:layout_constraintTop_toBottomOf="@+id/descvalue" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="340dp"
+        android:layout_height="311dp"
+        android:layout_marginTop="32dp"
+        android:src="@android:drawable/ic_menu_report_image"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
