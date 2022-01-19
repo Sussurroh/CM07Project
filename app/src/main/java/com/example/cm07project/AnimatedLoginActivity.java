@@ -66,9 +66,7 @@ public class AnimatedLoginActivity extends AppCompatActivity {
 
         mTabLayout = findViewById(R.id.tab_layout);
 
-        mTabLayout.setSelectedTabIndicatorColor(Color.parseColor("#FF0000"));
-        mTabLayout.setBackgroundColor(Color.parseColor("#008577"));
-        mTabLayout.setTabTextColors(Color.parseColor("#727272"),Color.parseColor("#D81B60"));
+
 
         mViewPager = findViewById(R.id.view_pager);
 
