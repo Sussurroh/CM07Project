@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -79,6 +80,16 @@ public class ChatFragment extends Fragment {
                         "You cant send an empty message",Toast.LENGTH_SHORT).show();
             }
             text_send.setText("");
+        });
+
+        tv.setOnClickListener(view -> {
+            int index = getActivity().getFragmentManager().getBackStackEntryCount() - 1;
+            FragmentManager.BackStackEntry backEntry = getActivity()
+                    .getSupportFragmentManager().getBackStackEntryAt(index);
+            String tag = backEntry.getName();
+            if(!tag.equals("Profile")){
+                // TODO ir ao profile da pessoa
+            }
         });
 
         reference.addValueEventListener(new ValueEventListener() {
