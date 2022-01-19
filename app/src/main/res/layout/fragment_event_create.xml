@@ -25,14 +25,11 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout2"
         android:layout_width="match_parent"
-        android:layout_height="500dp"
-        android:layout_marginTop="200dp"
+        android:layout_height="600dp"
         android:background="@drawable/retanglebg"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
         tools:context=".EventCreateFragment">
 
         <Button
@@ -56,14 +53,13 @@
             android:id="@+id/eventnameedit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="100dp"
             android:ems="8"
             android:hint="Nome do Evento"
 
             android:minHeight="48dp"
             app:layout_constraintEnd_toStartOf="@+id/editTextDate"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/titleText" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
             android:id="@+id/eventdescedit"
