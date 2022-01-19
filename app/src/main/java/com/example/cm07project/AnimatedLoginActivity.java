@@ -66,9 +66,6 @@ public class AnimatedLoginActivity extends AppCompatActivity {
 
         mTabLayout = findViewById(R.id.tab_layout);
 
-        mTabLayout.setSelectedTabIndicatorColor(Color.parseColor("#FF0000"));
-        mTabLayout.setBackgroundColor(Color.parseColor("#008577"));
-        mTabLayout.setTabTextColors(Color.parseColor("#727272"),Color.parseColor("#D81B60"));
 
         mViewPager = findViewById(R.id.view_pager);
 
@@ -76,32 +73,13 @@ public class AnimatedLoginActivity extends AppCompatActivity {
         mTabLayout.addTab(mTabLayout.newTab().setText("Sign Up"));
         mTabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
-        loginTabFragment = new LoginTabFragment();
-        signUpTabFragment = new SignUpTabFragment();
+
 
         final LoginAdapter adapter = new LoginAdapter(getSupportFragmentManager(),this,mTabLayout.getTabCount(), signUpTabFragment, loginTabFragment);
         mViewPager.setAdapter(adapter);
 
-        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+        mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(mTabLayout));
 
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-                if(position==0)
-                    loginTabFragment.setAnimation();
-                if(position==1)
-                    signUpTabFragment.setAnimation();
-
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-
-            }
-        });
 
         mTabLayout.setTranslationY(300);
 

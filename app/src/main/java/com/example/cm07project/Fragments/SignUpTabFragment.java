@@ -47,12 +47,12 @@ public class SignUpTabFragment extends Fragment {
         sign_up = root.findViewById(R.id.btn_signup);
 
         mAuth = FirebaseAuth.getInstance();
-
+        setAnimation();
         sign_up.setOnClickListener(view -> {
             createUser();
         });
 
-        setAnimation();
+
         return root;
     }
 
@@ -97,7 +97,7 @@ public class SignUpTabFragment extends Fragment {
                         });
 
                         //Toast.makeText(RegisterActivity.this, "User registered", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(getActivity(), AnimatedLoginActivity.class));
+                        //startActivity(new Intent(getActivity(), AnimatedLoginActivity.class));
                     }else {
                         Toast.makeText(getContext(), "Registration Failed:" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                     }
