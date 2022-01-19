@@ -4,79 +4,117 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity"
-    android:background="@color/greenblue">
+    tools:context=".AnimatedLoginActivity">
 
-    <TextView
-        android:id="@+id/titleText"
+    <ImageView
+        android:id="@+id/imageView2"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="App Name"
-        android:textColor="@color/black"
-        android:textSize="48sp"
+        android:layout_height="0dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/bg"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent=".27"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.19" />
+        app:layout_constraintVertical_bias="0" />
 
-    <EditText
-        android:id="@+id/loginText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Enter Mail"
-        android:minHeight="48dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@drawable/view_bg"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHeight_percent=".78"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.402" />
+        app:layout_constraintVertical_bias="1">
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent=".7"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tab_layout"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0" />
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tab_layout"
+            app:tabSelectedTextColor="@color/black"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_google"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
+            android:elevation="35dp"
+            android:src="@drawable/google"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view_pager" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_fb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:backgroundTint="@color/white"
+            android:elevation="35dp"
+            android:src="@drawable/fb"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/fab_google"
+            app:layout_constraintTop_toBottomOf="@+id/view_pager" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_twitter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:backgroundTint="@color/white"
+            android:elevation="35dp"
+            android:src="@drawable/twitter"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toEndOf="@id/fab_google"
+            app:layout_constraintTop_toBottomOf="@+id/view_pager" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:src="@drawable/fork_logo"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView2"
+        app:layout_constraintVertical_bias=".3" />
 
     <TextView
-        android:id="@+id/registerText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Register"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="@string/welcome_to_login_sample"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        app:layout_constraintVertical_bias=".2"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.305"
-        app:layout_constraintStart_toStartOf="@+id/passwordText"
-        app:layout_constraintTop_toBottomOf="@id/button"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:ems="10"
-        android:text="Sign In"
-        android:textColor="@color/black"
-        android:backgroundTint="@color/orangelight"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/passwordText"
-        app:layout_constraintVertical_bias="0.231" />
-
-    <EditText
-        android:id="@+id/passwordText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="61dp"
-        android:ems="10"
-        android:hint="Enter password"
-        android:inputType="textPassword"
-        android:minHeight="48dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/loginText"
-        app:layout_constraintVertical_bias="0.023" />
-
+        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
 </androidx.constraintlayout.widget.ConstraintLayout>

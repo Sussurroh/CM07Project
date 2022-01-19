@@ -20,9 +20,11 @@
    <ListView
        android:id="@+id/listView"
        android:layout_width="match_parent"
-       android:layout_height="281dp"
+       android:layout_height="176dp"
        android:layout_marginTop="80dp"
-       android:padding="10dp" />
+       android:padding="10dp">
+
+   </ListView>
 
    <TextView
        android:id="@+id/eventvalue"
@@ -42,6 +44,45 @@
        android:layout_marginTop="90px"
        android:layout_marginLeft="20px"/>
 
+   <TextView
+       android:id="@+id/editTextTextPersonName"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_marginTop="260dp"
+       android:inputType="textPersonName"
+       android:padding="10dp"
+       android:text="Eventos inscritos"
+       android:textColor="@color/black"
+       android:textSize="20sp"
+       tools:ignore="TouchTargetSizeCheck" />
 
+   <ListView
+       android:id="@+id/listView2"
+       android:layout_width="match_parent"
+       android:layout_height="146dp"
+       android:layout_marginTop="310dp"
+       android:padding="10dp">
+
+   </ListView>
+
+   <TextView
+       android:id="@+id/editTextTextPersonName2"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_marginTop="460dp"
+       android:padding="10dp"
+       android:text="Eventos criados"
+       android:textColor="@color/black"
+       android:textSize="20sp"
+       android:inputType="textPersonName"/>
+
+   <ListView
+       android:id="@+id/listView3"
+       android:layout_width="match_parent"
+       android:layout_height="202dp"
+       android:layout_marginTop="510dp"
+       android:padding="10dp">
+
+   </ListView>
 
 </FrameLayout>
