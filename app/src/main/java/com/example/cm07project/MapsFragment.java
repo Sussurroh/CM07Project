@@ -143,8 +143,6 @@ public class MapsFragment extends Fragment {
                     }
                 }
 
-
-
                 // adding on click listener to marker of google maps.
                 googleMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
                     @Override

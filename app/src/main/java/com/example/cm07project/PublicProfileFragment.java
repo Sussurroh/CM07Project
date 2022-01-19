@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -30,6 +31,8 @@ public class PublicProfileFragment extends Fragment {
     private FirebaseUser user;
     private DatabaseReference reference;
     private String userid;
+    private Button sendmsgbutton;
+    private TextView nameView;
 
     public PublicProfileFragment(String userid){
         this.userid = userid;
@@ -45,7 +48,8 @@ public class PublicProfileFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.fragment_public_profile, container, false);
-        final TextView nameView = (TextView) root.findViewById(R.id.namevalue);
+        this.nameView = (TextView) root.findViewById(R.id.namevalue);
+        this.sendmsgbutton = root.findViewById(R.id.sendmsgbutton);
         reference = FirebaseDatabase.getInstance().getReference("Users");
 
         reference.child(userid).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -121,6 +125,14 @@ public class PublicProfileFragment extends Fragment {
                 }
             });
         });
+
+        sendmsgbutton.setOnClickListener((view -> {
+            final FragmentManager fm = getActivity().getSupportFragmentManager();
+            ChatFragment chatFragment =
+                    new ChatFragment(this.userid, this.nameView.getText().toString());
+            fm.beginTransaction().replace(R.id.container, chatFragment)
+                    .addToBackStack("Profile").commit();
+        }));
 
         return root;
     }

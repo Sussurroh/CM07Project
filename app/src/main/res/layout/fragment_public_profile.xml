@@ -11,9 +11,12 @@
         android:id="@+id/sendmsgbutton"
         android:layout_width="50dp"
         android:layout_height="48dp"
+        android:layout_marginBottom="64dp"
         android:background="@android:drawable/sym_action_email"
-        tools:layout_editor_absoluteX="194dp"
-        tools:layout_editor_absoluteY="28dp" />
+        app:layout_constraintBottom_toTopOf="@+id/myproductsView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.12"
+        app:layout_constraintStart_toEndOf="@+id/namevalue" />
 
     <TextView
         android:id="@+id/namevalue"
@@ -30,11 +33,11 @@
         android:id="@+id/myproductsView"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="140dp"
+        android:layout_marginRight="10dp"
         android:background="@color/whitegreen"
         android:padding="10dp"
-        android:layout_marginTop="140dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"

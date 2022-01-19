@@ -23,7 +23,6 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
@@ -117,7 +116,7 @@ public class ChatFragment extends Fragment {
         FragmentManager fm = getActivity().getSupportFragmentManager();
         PublicProfileFragment ppFragment = new PublicProfileFragment(this.otherUid);
         fm.beginTransaction().replace(R.id.container, ppFragment)
-                .addToBackStack("Profile").commit();
+                .addToBackStack("EventParticipant").commit();
     }
 
     private void sendMessage(String sender, String receiver, String message){

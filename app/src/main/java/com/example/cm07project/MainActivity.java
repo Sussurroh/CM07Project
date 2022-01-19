@@ -36,7 +36,6 @@ public class MainActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
     FirebaseAuth mAuth;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,7 +81,6 @@ public class MainActivity extends AppCompatActivity {
             return true;
         });
 
-
     }
 
     @Override
@@ -93,6 +91,13 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(this, LoginActivity.class);
             startActivity(intent);
         }
+    }
+
+    protected void goToProfile(){
+        this.bottomNavigationView.getMenu().getItem(4).setChecked(true);
+        ProfileFragment profileFragment = new ProfileFragment();
+        FragmentManager fm = getSupportFragmentManager();
+        fm.beginTransaction().replace(R.id.container, profileFragment).commit();
     }
 
 }

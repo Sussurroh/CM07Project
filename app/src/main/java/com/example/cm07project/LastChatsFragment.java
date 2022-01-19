@@ -37,6 +37,7 @@ public class LastChatsFragment extends Fragment {
     DatabaseReference reference;
 
     private List<Chatlist> usersList;
+    private FragmentManager fm;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -49,6 +50,7 @@ public class LastChatsFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view =  inflater.inflate(R.layout.fragment_last_chats, container, false);
 
+        this.fm = getActivity().getSupportFragmentManager();
         recyclerView = view.findViewById(R.id.recycler_view);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -96,7 +98,6 @@ public class LastChatsFragment extends Fragment {
                         }
                     }
                 }
-                FragmentManager fm = getActivity().getSupportFragmentManager();
                 userAdapter = new UserAdapter(getContext(),mUsers,fm);
                 recyclerView.setAdapter(userAdapter);
             }

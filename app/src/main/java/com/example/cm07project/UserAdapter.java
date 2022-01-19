@@ -47,7 +47,6 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
         User user = mUsers.get(position);
         String fullName = user.getFirstname() + " " + user.getLastname();
         holder.username.setText(fullName);
-
         holder.itemView.setOnClickListener(view -> {
             FirebaseDatabase.getInstance().getReference().child("Users")
                     .addValueEventListener(new ValueEventListener() {
