@@ -107,6 +107,25 @@ public class ChatFragment extends Fragment {
         hashMap.put("message", message);
 
         reference.child("Chats").push().setValue(hashMap);
+
+        // adicionar user ao chat fragment
+        final DatabaseReference chatRef = FirebaseDatabase.getInstance().getReference("Chatlist")
+                .child(fuser.getUid())
+                .child(otherUid);
+
+        chatRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(!dataSnapshot.exists()){
+                    chatRef.child("id").setValue(otherUid);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
     private void readMesagges(final String myid, final String userid){
