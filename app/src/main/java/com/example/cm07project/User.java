@@ -3,8 +3,17 @@ package com.example.cm07project;
 public class User {
 
     public String firstname;
-    public String  lastname;
+    public String lastname;
+    public Boolean org;
     public String email;
+
+    public void setOrg(Boolean org) {
+        this.org = org;
+    }
+
+    public Boolean getOrg() {
+        return org;
+    }
 
     public User(){
     }
@@ -33,10 +42,12 @@ public class User {
         this.email = email;
     }
 
-    public User(String firstname, String lastname, String email){
+    public User(String firstname, String lastname, String email,Boolean org){
         this.firstname = firstname;
         this.lastname = lastname;
         this.email = email;
+        this.org = org;
+
     }
 
     public String getName(){

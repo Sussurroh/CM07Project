@@ -43,7 +43,7 @@ public class EventCreateFragment extends Fragment {
         mname = root.findViewById(R.id.eventnameedit);
         mdesc = root.findViewById(R.id.eventdescedit);
         morg = root.findViewById(R.id.org_edit);
-        mdata = root.findViewById(R.id.date_edit);
+        mdata = root.findViewById(R.id.editTextDate);
         mrua = root.findViewById(R.id.rua_edit);
         mdist = root.findViewById(R.id.district_edit);
 

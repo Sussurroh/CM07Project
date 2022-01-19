@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Switch;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -15,8 +16,9 @@ import com.example.cm07project.R;
 
 
 public class SignUpTabFragment extends Fragment {
-    EditText email, phone, password;//confirm;
+    EditText email, firstname, lastname, password;//confirm;
     Button sign_up;
+    Switch org;
     float v = 0;
 
     @Nullable
@@ -25,9 +27,11 @@ public class SignUpTabFragment extends Fragment {
         ViewGroup root = (ViewGroup) inflater.inflate(R.layout.signup_tab_fragment, container, false);
 
 
-        email = root.findViewById(R.id.emailSignUp);
+        email = root.findViewById(R.id.emailreg);
         password = root.findViewById(R.id.passwordSignUp);
-        phone = root.findViewById(R.id.phone);
+        firstname = root.findViewById(R.id.firstname);
+        lastname = root.findViewById(R.id.lastname);
+        org = root.findViewById(R.id.organization);
 //        confirm = root.findViewById(R.id.confirm_password);
         sign_up = root.findViewById(R.id.btn_signup);
 
@@ -38,19 +42,25 @@ public class SignUpTabFragment extends Fragment {
     public void setAnimation() {
         email.setTranslationX(800);
         password.setTranslationX(800);
-        phone.setTranslationX(800);
+        firstname.setTranslationX(800);
+        lastname.setTranslationX(800);
+        org.setTranslationX(800);
 //        confirm.setTranslationX(800);
         sign_up.setTranslationX(800);
 
         email.setAlpha(v);
         password.setAlpha(v);
-        phone.setAlpha(v);
+        firstname.setAlpha(v);
+        lastname.setAlpha(v);
+        org.setAlpha(v);
 //        confirm.setAlpha(v);
         sign_up.setAlpha(v);
 
         email.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(300).start();
         password.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(500).start();
-        phone.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(500).start();
+        firstname.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(500).start();
+        lastname.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(500).start();
+        org.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(500).start();
 //        confirm.animate().translationY(0).alpha(1).setDuration(800).setStartDelay(700).start();
         sign_up.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(800).start();
 
