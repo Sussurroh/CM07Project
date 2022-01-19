@@ -134,6 +134,11 @@ public class ProfileFragment extends Fragment {
 
 
                 }
+                if(list.isEmpty()) {
+                    list.add("Não tem itens!");
+                }
+
+
                 adapter.notifyDataSetChanged();
 
             }

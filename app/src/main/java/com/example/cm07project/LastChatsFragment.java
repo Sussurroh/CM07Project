@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -32,6 +33,7 @@ public class LastChatsFragment extends Fragment {
 
     private UserAdapter userAdapter;
     private List<User> mUsers;
+    private TextView textView;
 
     FirebaseUser fuser;
     DatabaseReference reference;
@@ -57,6 +59,7 @@ public class LastChatsFragment extends Fragment {
 
         fuser = FirebaseAuth.getInstance().getCurrentUser();
         usersList = new ArrayList<>();
+        textView = view.findViewById(R.id.nousers);
 
         reference = FirebaseDatabase.getInstance().getReference("Chatlist")
                 .child(fuser.getUid());
@@ -98,6 +101,10 @@ public class LastChatsFragment extends Fragment {
                         }
                     }
                 }
+                if(mUsers.isEmpty()) {
+                    textView.setVisibility(View.VISIBLE);
+                }
+
                 userAdapter = new UserAdapter(getContext(),mUsers,fm);
                 recyclerView.setAdapter(userAdapter);
             }

@@ -65,7 +65,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
 
                         @Override
                         public void onCancelled(@NonNull DatabaseError error) {
-                            Log.e("ABC", "Deu merda a entrar no chatzao");
+                            Log.e("ABC", "erro entrar no chatzao");
                         }
 
                     });
