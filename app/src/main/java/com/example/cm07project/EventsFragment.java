@@ -101,7 +101,7 @@ public class EventsFragment extends Fragment {
 
                                 final String n1 =  snapshot.child("id").getValue().toString();
                                 Bundle bundle = new Bundle();
-                                FragmentManager fm = getFragmentManager();
+                                FragmentManager fm = getActivity().getSupportFragmentManager();
                                 FragmentTransaction ft = fm.beginTransaction();
                                 EventsDetailsFragment llf = new EventsDetailsFragment();
                                 bundle.putString("message", n1.toString());
@@ -133,7 +133,7 @@ public class EventsFragment extends Fragment {
         event.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentManager fm = getFragmentManager();
+                FragmentManager fm = getActivity().getSupportFragmentManager();
                 FragmentTransaction ft = fm.beginTransaction();
 
                 EventCreateFragment llf = new EventCreateFragment();
