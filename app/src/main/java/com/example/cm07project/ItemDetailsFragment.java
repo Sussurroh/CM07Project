@@ -64,8 +64,6 @@ public class ItemDetailsFragment extends Fragment {
         quantity = (TextView) root.findViewById(R.id.quantvalue);
         imageView = (ImageView) root.findViewById(R.id.imageView);
 
-
-
         reference = FirebaseDatabase.getInstance().getReference("Products");
         reference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -118,7 +116,16 @@ public class ItemDetailsFragment extends Fragment {
 
                 }});
 
-
+        FragmentManager fm = getActivity().getSupportFragmentManager();
+        username.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.i("CLICK", "CLICKADOOOO");
+                PublicProfileFragment ppFragment = new PublicProfileFragment(userID);
+                fm.beginTransaction().replace(R.id.container, ppFragment)
+                        .addToBackStack("Profile").commit();
+            }
+        });
 
         return root;
     }
