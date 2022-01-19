@@ -7,6 +7,33 @@
     android:background="@color/greenblue"
     tools:context=".EventCreateFragment">
 
+    <Button
+        android:id="@+id/btnChoose"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_weight="1"
+        android:background="@android:drawable/ic_menu_gallery"
+        app:layout_constraintBottom_toTopOf="@+id/itemtitleedit"
+        app:layout_constraintStart_toStartOf="@+id/titleText"
+        app:layout_constraintTop_toBottomOf="@+id/titleText" />
+
+    <Button
+        android:id="@+id/takephoto"
+        android:layout_width="60dp"
+        android:layout_height="51dp"
+        android:layout_weight="1"
+        android:background="@android:drawable/ic_menu_camera"
+
+        app:layout_constraintEnd_toEndOf="@+id/titleText"
+        app:layout_constraintTop_toTopOf="@+id/btnChoose" />
+
+    <ImageView
+        android:id="@+id/imgView"
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        app:layout_constraintEnd_toEndOf="@+id/itemdescedit"
+        app:layout_constraintTop_toTopOf="@+id/titleText" />
+
     <Spinner
         android:id="@+id/category_spinner"
         android:layout_width="169dp"
@@ -55,9 +82,10 @@
         app:layout_constraintBottom_toBottomOf="parent"
 
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/titleText"
         app:layout_constraintTop_toBottomOf="@+id/titleText"
-        app:layout_constraintVertical_bias="0.057" />
+        app:layout_constraintVertical_bias="0.168" />
 
     <EditText
         android:id="@+id/itemdescedit"
