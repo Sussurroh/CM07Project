@@ -11,16 +11,18 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.FileProvider;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.os.Environment;
 import android.provider.MediaStore;
+import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -35,11 +37,18 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.core.Constants;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.UUID;
 
 
@@ -60,12 +69,18 @@ public class CreateItemFragment extends Fragment {
     private ImageView imageView;
     private FirebaseStorage storage;
     private StorageReference storageReference;
+    String photoTakenPath;
+
+    private static final int CAMERA_REQUEST = 1888;
+    private static final int MY_CAMERA_PERMISSION_CODE = 100;
 
     private String id;
-
+    static final int REQUEST_IMAGE_CAPTURE = 1;
 
     // request code
     private final int PICK_IMAGE_REQUEST = 22;
+
+    Bitmap photoTaken;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -108,7 +123,13 @@ public class CreateItemFragment extends Fragment {
         photo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //abrir camera
+                if(ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED)
+                {
+                    requestPermissions(new String[]{Manifest.permission.CAMERA},2000);
+                }
+                else {
+                    takePicture();
+                }
 
             }
         });
@@ -130,6 +151,39 @@ public class CreateItemFragment extends Fragment {
         return  root;
 
 
+    }
+
+   /* private void galleryAddPic() {
+        Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+        File f = new File(photoTakenPath);
+        Uri contentUri = Uri.fromFile(f);
+        mediaScanIntent.setData(contentUri);
+        getActivity().sendBroadcast(mediaScanIntent);
+    }*/
+/*
+    private File createImageFile() throws IOException {
+        // Create an image file name
+
+
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        String imageFileName = "JPEG_" + timeStamp + "_";
+        File storageDir = getActivity().getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        File image = File.createTempFile(imageFileName,
+                ".jpg",
+                storageDir
+        );
+
+        // Save a file: path for use with ACTION_VIEW intents
+        photoTakenPath = image.getAbsolutePath();
+        return image;
+    }*/
+
+    private void takePicture() {
+        Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+        if (cameraIntent.resolveActivity(getActivity().getPackageManager()) != null) {
+
+            startActivityForResult(cameraIntent, CAMERA_REQUEST);
+        }
     }
 
     private void startGallery() {
@@ -156,10 +210,40 @@ public class CreateItemFragment extends Fragment {
                 }
                 imageView.setImageBitmap(bitmapImage);
                 filePath = returnUri;
+                Log.i("pathhAA",returnUri.toString());
             }
+        }
+
+        if (requestCode == CAMERA_REQUEST && resultCode == Activity.RESULT_OK) {
+           /* Bitmap photo = (Bitmap) data.getExtras().get("data");
+            imageView.setImageBitmap(photo);*/
+            Bundle extras = data.getExtras();
+            photoTaken = (Bitmap) extras.get("data");
+            imageView.setImageBitmap(photoTaken);
+            saveImage(photoTaken);
+
         }
     }
 
+    private void saveImage(Bitmap image) {
+        File pictureFile = getOutputMediaFile();
+        if (pictureFile == null) {
+            Log.d("erro","Error creating media file, check storage permissions: ");// e.getMessage());
+            return;
+        }
+        try {
+            FileOutputStream fos = new FileOutputStream(pictureFile);
+            image.compress(Bitmap.CompressFormat.PNG, 90, fos);
+            fos.flush();
+            fos.close();
+            filePath = Uri.fromFile(pictureFile);
+            Log.i("bom diaaaaa",filePath.getPath().toString());
+        } catch (FileNotFoundException e) {
+            Log.d("erro", "File not found: " + e.getMessage());
+        } catch (IOException e) {
+            Log.d("erro", "Error accessing file: " + e.getMessage());
+        }
+    }
     public String UploadImage() {
 
         if (filePath != null) {
@@ -193,6 +277,33 @@ public class CreateItemFragment extends Fragment {
 
     }
 
+    /** Create a File for saving an image or video */
+    private  File getOutputMediaFile(){
+        // To be safe, you should check that the SDCard is mounted
+        // using Environment.getExternalStorageState() before doing this.
+        File mediaStorageDir = getActivity().getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        Log.i("bom dia", mediaStorageDir.getAbsolutePath());
+        // This location works best if you want the created images to be shared
+        // between applications and persist after your app has been uninstalled.
+
+        // Create the storage directory if it does not exist
+        if (! mediaStorageDir.exists()){
+            Log.i("bom", "n existe");
+            if (! mediaStorageDir.mkdirs()){
+                return null;
+            }
+            Log.i("bom", "criado");
+
+        }
+        // Create a media file name
+        String timeStamp = new SimpleDateFormat("ddMMyyyy_HHmm").format(new Date());
+        File mediaFile;
+        String mImageName="MI_"+ timeStamp +".jpg";
+        mediaFile = new File(mediaStorageDir.getPath() + File.separator + mImageName);
+        Log.i("pathhh",mediaFile.getAbsolutePath());
+        return mediaFile;
+    }
+
     private void createItem() {
         String title = mtitle.getText().toString();
         String desc = mdesc.getText().toString();
@@ -216,6 +327,7 @@ public class CreateItemFragment extends Fragment {
         } else {
             int quant = Integer.parseInt(mquant.getText().toString());
             id = UUID.randomUUID().toString();
+
             String idphoto = UploadImage();
 
             if (idphoto.isEmpty()) {
@@ -252,5 +364,40 @@ public class CreateItemFragment extends Fragment {
 
         }
     }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults)
+    {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == MY_CAMERA_PERMISSION_CODE)
+        {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED)
+            {
+                Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+                startActivityForResult(cameraIntent, CAMERA_REQUEST);
+            }
+            else
+            {
+                Toast.makeText(getContext(), "camera permission denied", Toast.LENGTH_LONG).show();
+            }
+        }
+
+        if (requestCode == 2000)
+        {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED)
+            {
+                Intent cameraIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                if (cameraIntent.resolveActivity(getActivity().getPackageManager()) != null) {
+                    startActivityForResult(cameraIntent, 1000);
+                }
+            }
+            else
+            {
+                Toast.makeText(getContext(), "gallery permission denied", Toast.LENGTH_LONG).show();
+            }
+        }
+    }
+
+
 
 }

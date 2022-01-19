@@ -118,7 +118,6 @@ public class ItemDetailsFragment extends Fragment {
 
                 }});
 
-            //storage buscar foto
 
 
         return root;
