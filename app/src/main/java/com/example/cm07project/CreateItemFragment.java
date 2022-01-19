@@ -309,7 +309,7 @@ public class CreateItemFragment extends Fragment {
         } else if(desc.isEmpty()) {
             Toast.makeText(getActivity(), "Descrição obrigatória", Toast.LENGTH_SHORT).show();
 
-        } else if(category.isEmpty()) {
+        } else if(category.equals("Selecionar...")) {
             Toast.makeText(getActivity(), "Categoria obrigatória", Toast.LENGTH_SHORT).show();
 
         } else if(mquant.getText().toString().isEmpty()) {

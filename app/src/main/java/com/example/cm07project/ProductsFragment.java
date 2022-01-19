@@ -22,6 +22,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SearchView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -46,6 +47,7 @@ public class ProductsFragment extends Fragment {
     private ArrayList<String> list;
     private ArrayList<String> listdisplay;
     private SearchView searchView;
+    private Spinner spinner;
 
 
 
@@ -192,8 +194,100 @@ public class ProductsFragment extends Fragment {
             }
         });
 
+        spinner = (Spinner) root.findViewById(R.id.category_spinner_search);
+        // Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this.getContext(),R.array.category_array, android.R.layout.simple_spinner_item);
+        // Specify the layout to use when the list of choices appears
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        // Apply the adapter to the spinner
+        spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                String cat =  adapterView.getItemAtPosition(i).toString();
+                displayFromCategory(cat);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+               //
+            }
+        });
 
         return root;
+
+    }
+
+    private void displayFromCategory(String cat) {
+        if (cat.equals("Selecionar...")) {
+            reference.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    list.clear();
+                    listdisplay.clear();
+
+
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren()){
+                        final String muserid = snapshot.child("userID").getValue().toString();
+
+                        if (!muserid.equals(userid)){
+                            list.add(snapshot.child("item").getValue().toString());
+                            listdisplay.add(snapshot.child("item").getValue().toString());
+                        }
+
+
+
+                    }
+                    adapter.notifyDataSetChanged();
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+
+        }
+        else {
+            reference.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    list.clear();
+                    listdisplay.clear();
+
+
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren()){
+                        final String muserid = snapshot.child("userID").getValue().toString();
+                        final String category = snapshot.child("category").getValue().toString();
+
+
+                        if (!muserid.equals(userid) && category.equals(cat)){
+                            list.add(snapshot.child("item").getValue().toString());
+                            listdisplay.add(snapshot.child("item").getValue().toString());
+                        }
+
+
+
+                    }
+                    if(list.isEmpty()) {
+                        Toast.makeText(getContext(), "Não foram encontrados items", Toast.LENGTH_LONG).show();
+
+                    }
+                    adapter.notifyDataSetChanged();
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+
+
+        }
+
 
     }
 
