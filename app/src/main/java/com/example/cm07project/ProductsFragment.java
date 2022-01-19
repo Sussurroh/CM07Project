@@ -116,6 +116,8 @@ public class ProductsFragment extends Fragment {
 
 
                 }
+
+
                 adapter.notifyDataSetChanged();
 
             }
@@ -271,6 +273,7 @@ public class ProductsFragment extends Fragment {
 
 
                     }
+
                     if(list.isEmpty()) {
                         Toast.makeText(getContext(), "Não foram encontrados items", Toast.LENGTH_LONG).show();
 
