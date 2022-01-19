@@ -24,6 +24,8 @@ import com.bumptech.glide.annotation.GlideModule;
 import com.bumptech.glide.module.AppGlideModule;
 import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.google.android.gms.auth.api.signin.internal.Storage;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -49,11 +51,15 @@ public class ItemDetailsFragment extends Fragment {
     public TextView quantity;
     public ImageView imageView;
     private String idPhoto;
+    private Button removeB;
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         ViewGroup root = (ViewGroup) inflater.inflate(R.layout.fragment_item_details, null);
+        String myId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+
 
         //Vai buscar o id do evento passado pelo EventsFragment
         String idItem = getArguments().getString("message");
@@ -83,7 +89,7 @@ public class ItemDetailsFragment extends Fragment {
                         desc.setText(snapshot.child("desc").getValue().toString());
                         category.setText("Categoria: " + snapshot.child("category").getValue().toString());
                         quantity.setText("Disponíveis: " + snapshot.child("quantity").getValue().toString());
-
+                        removeButInit(myId,idItem);
                     }
 
                 }
@@ -138,6 +144,42 @@ public class ItemDetailsFragment extends Fragment {
             }
         });
 
+        this.removeB = (Button) root.findViewById(R.id.remove_button);
+
+
+
         return root;
+    }
+
+    private void removeButInit(String myId, String idItem){
+        if(!myId.equals(this.userID)){
+            Log.i("ABC", "myId: " + myId + " and this.userID: " + this.userID);
+            removeB.setVisibility(View.INVISIBLE);
+        } else {
+            this.removeB.setOnClickListener(view -> {
+                reference.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        for(DataSnapshot snapshot : dataSnapshot.getChildren()){
+                            final String tempId = snapshot.child("id").getValue().toString();
+                            if(tempId.equals(idItem)){
+                                snapshot.getRef().removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        getActivity().onBackPressed();
+                                    }
+                                });
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+            });
+
+        }
     }
 }
