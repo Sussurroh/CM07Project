@@ -1,3 +1,4 @@
+
 package com.example.cm07project;
 
 import android.widget.EditText;
@@ -5,9 +6,35 @@ import android.widget.EditText;
 public class Evento {
 
 
-    String name,des,org,date,streetadress,state,country,id;
+    String name;
+    String des;
+    String org;
+    String date;
+    String streetadress;
+    String state;
+    String country;
+    String id;
+    String uid;
 
-    public Evento(String name, String des, String org, String date, String streetadress, String state, String country, String id) {
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
+    }
+
+    String key;
+
+    public Evento(String name, String des, String org, String date, String streetadress, String state, String country, String id,String uid) {
         this.name = name;
         this.des = des;
         this.org = org;
@@ -16,6 +43,7 @@ public class Evento {
         this.state = state;
         this.country = country;
         this.id = id;
+        this.uid=uid;
     }
 
 
