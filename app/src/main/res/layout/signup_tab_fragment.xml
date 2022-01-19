@@ -97,22 +97,25 @@
     <!--        app:layout_constraintVertical_bias="0"-->
     <!--        app:layout_constraintWidth_percent=".8" />-->
 
-
     <Button
         android:id="@+id/btn_signup"
         android:layout_width="329dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="32dp"
         android:backgroundTint="@color/orangelight"
         android:text="Registo"
         android:textColor="@color/white"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/passwordSignUp"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/organization"
         app:layout_constraintTop_toBottomOf="@+id/organization"
         app:layout_constraintWidth_percent=".8" />
+
+
+
+
+
 
     <Switch
         android:id="@+id/organization"

@@ -38,13 +38,13 @@ public class LoginTabFragment extends Fragment {
         password = root.findViewById(R.id.password);
         forgot = root.findViewById(R.id.forgot);
         login = root.findViewById(R.id.btn_login);
-        setAnimation();
+
         login.setOnClickListener(view -> {
             loginUser();
         });
 
 
-
+        setAnimation();
 
 
 
