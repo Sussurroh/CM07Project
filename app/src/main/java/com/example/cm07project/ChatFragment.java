@@ -84,11 +84,15 @@ public class ChatFragment extends Fragment {
 
         tv.setOnClickListener(view -> {
             int index = getActivity().getFragmentManager().getBackStackEntryCount() - 1;
-            FragmentManager.BackStackEntry backEntry = getActivity()
-                    .getSupportFragmentManager().getBackStackEntryAt(index);
-            String tag = backEntry.getName();
-            if(!tag.equals("Profile")){
-                // TODO ir ao profile da pessoa
+            if (index > 0) {
+                FragmentManager.BackStackEntry backEntry = getActivity()
+                        .getSupportFragmentManager().getBackStackEntryAt(index);
+                String tag = backEntry.getName();
+                if(!tag.equals("Profile")){
+                    goToProfile();
+                }
+            } else {
+                goToProfile();
             }
         });
 
@@ -107,6 +111,13 @@ public class ChatFragment extends Fragment {
         });
 
         return v;
+    }
+
+    private void goToProfile(){
+        FragmentManager fm = getActivity().getSupportFragmentManager();
+        PublicProfileFragment ppFragment = new PublicProfileFragment(this.otherUid);
+        fm.beginTransaction().replace(R.id.container, ppFragment)
+                .addToBackStack("Profile").commit();
     }
 
     private void sendMessage(String sender, String receiver, String message){
