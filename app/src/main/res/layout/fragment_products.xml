@@ -27,20 +27,28 @@
 
 
     <Button
-        android:id="@+id/eventcreatbutton"
+        android:id="@+id/itemcreatebutton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="75dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="17dp"
         android:backgroundTint="@color/orangelight"
-        android:text="Criar Evento"
+        android:text="Adicionar Item"
         android:textColor="@color/black"
         app:layout_constraintBottom_toTopOf="@+id/productsView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-
+    <SearchView
+        android:id="@+id/searchView"
+        android:background="@color/whitegreen"
+        android:layout_width="382dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="@+id/productsView"
+        app:layout_constraintStart_toStartOf="@+id/productsView"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

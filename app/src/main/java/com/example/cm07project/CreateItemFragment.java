@@ -94,7 +94,7 @@ public class CreateItemFragment extends Fragment {
         } else {
             int quant = Integer.parseInt(mquant.getText().toString());
 
-            Products itemP = new Products(userid, title,desc, category,quant);
+            Products itemP = new Products(UUID.randomUUID().toString(), userid, title,desc, category,quant);
 
             FirebaseDatabase.getInstance().getReference("Products")
                     .push()

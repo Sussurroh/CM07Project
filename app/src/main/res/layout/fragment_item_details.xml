@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/greenblue"
+    tools:context=".ItemDetailsFragment">
+
+
+    <TextView
+        android:id="@+id/titlevalue"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="284dp"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/usernamevalue"
+        android:layout_width="150dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="@+id/titlevalue"
+        app:layout_constraintTop_toBottomOf="@+id/titlevalue" />
+
+    <TextView
+        android:id="@+id/descvalue"
+        android:layout_width="347dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="@+id/usernamevalue"
+        app:layout_constraintTop_toBottomOf="@+id/usernamevalue" />
+
+    <TextView
+        android:id="@+id/categoryvalue"
+        android:layout_width="140dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="28dp"
+        app:layout_constraintStart_toStartOf="@+id/descvalue"
+        app:layout_constraintTop_toBottomOf="@+id/descvalue" />
+
+    <TextView
+        android:id="@+id/quantvalue"
+        android:layout_width="140dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="28dp"
+        app:layout_constraintEnd_toEndOf="@+id/descvalue"
+        app:layout_constraintTop_toBottomOf="@+id/descvalue" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

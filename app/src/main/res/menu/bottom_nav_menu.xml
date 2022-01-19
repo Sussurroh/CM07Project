@@ -3,26 +3,26 @@
     <item
         android:id="@+id/navigation_messages"
         android:icon="@drawable/ic_baseline_message_24"
-        android:title="Messages" />
+        android:title="Chat" />
 
     <item
         android:id="@+id/navigation_map"
         android:icon="@drawable/ic_baseline_location_on_24"
-        android:title="Map" />
+        android:title="Mapa" />
 
     <item
         android:id="@+id/navigation_events"
         android:icon="@drawable/ic_baseline_event_24"
-        android:title="Events" />
+        android:title="Eventos" />
 
     <item
         android:id="@+id/navigation_products"
         android:icon="?android:attr/actionModeWebSearchDrawable"
-        android:title="Items" />
+        android:title="Itens" />
 
     <item
         android:id="@+id/navigation_profile"
         android:icon="@drawable/ic_baseline_person_24"
-        android:title="My Profile"
+        android:title="Perfil"
         />
 </menu>

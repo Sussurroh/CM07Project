@@ -39,11 +39,9 @@ public class ProfileFragment extends Fragment {
     private FirebaseUser user;
     private DatabaseReference reference;
     private String userid;
-    TextView imageView;
+    //TextView imageView;
     private Button logout;
     private Button addbtn;
-    private EditText itemText;
-    private ListView listView;
 
 
 
@@ -147,6 +145,47 @@ public class ProfileFragment extends Fragment {
             }
         });
 
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                //valor do nome da lista Exemplo:Natal
+                final String selectedFromList = (String) listView.getItemAtPosition(position);
+
+                reference2.orderByChild(selectedFromList).addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                        for (DataSnapshot snapshot : dataSnapshot.getChildren()){
+
+                            final String a = snapshot.child("item").getValue().toString();
+
+                            if (selectedFromList.toString().equals(a)){
+
+                                final String n1 =  snapshot.child("id").getValue().toString();
+                                Bundle bundle = new Bundle();
+                                FragmentManager fm = getFragmentManager();
+                                FragmentTransaction ft = fm.beginTransaction();
+                                ItemDetailsFragment llf = new ItemDetailsFragment();
+                                bundle.putString("message", n1.toString());
+                                llf.setArguments(bundle);
+                                ft.replace(R.id.container, llf);
+                                ft.addToBackStack("tag");
+                                ft.commit();
+                            }
+                        }
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+            }
+
+        });
         return root;
 
     }
