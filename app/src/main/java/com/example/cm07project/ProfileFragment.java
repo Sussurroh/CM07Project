@@ -95,7 +95,7 @@ public class ProfileFragment extends Fragment {
         addbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentManager fm = getFragmentManager();
+                FragmentManager fm = getActivity().getSupportFragmentManager();
                 FragmentTransaction ft = fm.beginTransaction();
 
                 CreateItemFragment llf = new CreateItemFragment();
@@ -164,14 +164,17 @@ public class ProfileFragment extends Fragment {
 
                                 final String n1 =  snapshot.child("id").getValue().toString();
                                 Bundle bundle = new Bundle();
-                                FragmentManager fm = getFragmentManager();
-                                FragmentTransaction ft = fm.beginTransaction();
-                                ItemDetailsFragment llf = new ItemDetailsFragment();
-                                bundle.putString("message", n1.toString());
-                                llf.setArguments(bundle);
-                                ft.replace(R.id.container, llf);
-                                ft.addToBackStack("tag");
-                                ft.commit();
+                                if(getActivity() != null) {
+                                    FragmentManager fm = getActivity().getSupportFragmentManager();
+                                    FragmentTransaction ft = fm.beginTransaction();
+                                    ItemDetailsFragment llf = new ItemDetailsFragment();
+                                    bundle.putString("message", n1.toString());
+                                    llf.setArguments(bundle);
+                                    ft.replace(R.id.container, llf);
+                                    ft.addToBackStack("tag");
+                                    ft.commit();
+                                }
+
                             }
                         }
 

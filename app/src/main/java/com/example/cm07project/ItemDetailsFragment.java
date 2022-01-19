@@ -24,6 +24,8 @@ import com.bumptech.glide.annotation.GlideModule;
 import com.bumptech.glide.module.AppGlideModule;
 import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.google.android.gms.auth.api.signin.internal.Storage;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -64,6 +66,9 @@ public class ItemDetailsFragment extends Fragment {
         quantity = (TextView) root.findViewById(R.id.quantvalue);
         imageView = (ImageView) root.findViewById(R.id.imageView);
 
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String authUid = user.getUid();
+
         reference = FirebaseDatabase.getInstance().getReference("Products");
         reference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -72,7 +77,6 @@ public class ItemDetailsFragment extends Fragment {
 
                     final String a = snapshot.child("id").getValue().toString();
                     if (idItem.toString().equals(a)){
-                        Log.i("snap", snapshot.child("photoid").getValue().toString());
                         userID = snapshot.child("userID").getValue().toString();
                         idPhoto = snapshot.child("photoid").getValue().toString();
                         item.setText(snapshot.child("item").getValue().toString());
@@ -120,10 +124,17 @@ public class ItemDetailsFragment extends Fragment {
         username.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.i("CLICK", "CLICKADOOOO");
-                PublicProfileFragment ppFragment = new PublicProfileFragment(userID);
-                fm.beginTransaction().replace(R.id.container, ppFragment)
-                        .addToBackStack("Profile").commit();
+                if(userID.equals(authUid)) {
+                    ProfileFragment ppFragment = new ProfileFragment();
+                    fm.beginTransaction().replace(R.id.container, ppFragment)
+                            .addToBackStack("Profile").commit();
+                } else {
+                    PublicProfileFragment ppFragment = new PublicProfileFragment(userID);
+                    fm.beginTransaction().replace(R.id.container, ppFragment)
+                            .addToBackStack("Profile").commit();
+                }
+
+
             }
         });
 

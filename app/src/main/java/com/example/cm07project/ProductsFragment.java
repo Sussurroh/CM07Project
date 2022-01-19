@@ -78,7 +78,7 @@ public class ProductsFragment extends Fragment {
         root.findViewById(R.id.itemcreatebutton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FragmentManager fm = getFragmentManager();
+                FragmentManager fm = getActivity().getSupportFragmentManager();
                 FragmentTransaction ft = fm.beginTransaction();
 
                 CreateItemFragment llf = new CreateItemFragment();
@@ -145,7 +145,7 @@ public class ProductsFragment extends Fragment {
 
                                 final String n1 =  snapshot.child("id").getValue().toString();
                                 Bundle bundle = new Bundle();
-                                FragmentManager fm = getFragmentManager();
+                                FragmentManager fm = getActivity().getSupportFragmentManager();
                                 FragmentTransaction ft = fm.beginTransaction();
                                 ItemDetailsFragment llf = new ItemDetailsFragment();
                                 bundle.putString("message", n1.toString());

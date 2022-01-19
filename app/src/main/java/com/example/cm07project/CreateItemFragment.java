@@ -69,17 +69,11 @@ public class CreateItemFragment extends Fragment {
     private ImageView imageView;
     private FirebaseStorage storage;
     private StorageReference storageReference;
-    String photoTakenPath;
 
     private static final int CAMERA_REQUEST = 1888;
     private static final int MY_CAMERA_PERMISSION_CODE = 100;
 
     private String id;
-    static final int REQUEST_IMAGE_CAPTURE = 1;
-
-    // request code
-    private final int PICK_IMAGE_REQUEST = 22;
-
     Bitmap photoTaken;
 
     @Override
@@ -343,7 +337,7 @@ public class CreateItemFragment extends Fragment {
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()){
 
-                            FragmentManager fm = getFragmentManager();
+                            FragmentManager fm = getActivity().getSupportFragmentManager();
                             FragmentTransaction ft = fm.beginTransaction();
 
                             ProfileFragment llf = new ProfileFragment();
