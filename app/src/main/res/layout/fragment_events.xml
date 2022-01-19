@@ -1,88 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".EventsFragment"
     android:background="@color/greenblue">
-
-
-   <ListView
-       android:id="@+id/listView"
-       android:layout_width="match_parent"
-       android:layout_height="176dp"
-       android:layout_marginTop="80dp"
-       android:padding="10dp">
-
-   </ListView>
-
-   <TextView
-       android:id="@+id/eventvalue"
-       android:layout_width="75dp"
-       android:layout_height="wrap_content"
-       android:layout_marginLeft="120dp"
-       android:layout_marginTop="40sp"
-       android:textSize="20sp" />
-
-   <Button
-       android:id="@+id/eventcreatbutton"
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       android:text="Criar Evento"
-       android:textColor="@color/black"
-       android:backgroundTint="@color/orangelight"
-       android:layout_marginTop="90px"
-       android:layout_marginLeft="20px"/>
-
-   <TextView
-       android:id="@+id/editTextTextPersonName"
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       android:layout_marginTop="260dp"
-       android:inputType="textPersonName"
-       android:padding="10dp"
-       android:text="Eventos inscritos"
-       android:textColor="@color/black"
-       android:textSize="20sp"
-       tools:ignore="TouchTargetSizeCheck" />
-
-   <ListView
-       android:id="@+id/listView2"
-       android:layout_width="match_parent"
-       android:layout_height="146dp"
-       android:layout_marginTop="310dp"
-       android:padding="10dp">
-
-   </ListView>
-
-   <TextView
-       android:id="@+id/nome"
+   <LinearLayout
        android:layout_width="match_parent"
        android:layout_height="match_parent"
-       android:layout_marginLeft="20px"
-       android:layout_marginTop="20px"
-       android:text="Eventos"
-       android:textColor="@color/black"
-       android:textSize="20sp" />
+       android:orientation="vertical"
+       >
+      <TextView
+          android:id="@+id/nome"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:text="Eventos"
+          android:layout_marginLeft="20dp"
+          android:textColor="@color/black"
+          android:textSize="20sp" />
 
-   <TextView
-       android:id="@+id/editTextTextPersonName2"
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       android:layout_marginTop="460dp"
-       android:padding="10dp"
-       android:text="Eventos criados"
-       android:textColor="@color/black"
-       android:textSize="20sp"
-       android:inputType="textPersonName"/>
 
-   <ListView
-       android:id="@+id/listView3"
-       android:layout_width="match_parent"
-       android:layout_height="202dp"
-       android:layout_marginTop="510dp"
-       android:padding="10dp">
+      <Button
+          android:id="@+id/eventcreatbutton"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="Criar Evento"
+          android:textColor="@color/black"
+          android:background="@color/orangelight"
+          android:layout_marginLeft="20dp"
+          />
+      <TextView
+          android:id="@+id/eventvalue"
+          android:layout_width="75dp"
+          android:layout_height="wrap_content"
+          android:layout_marginLeft="120dp"
+          android:visibility="gone"
+          android:textSize="20sp" />
 
-   </ListView>
 
-</FrameLayout>
+
+      <ListView
+          android:id="@+id/listView"
+          android:layout_width="400dp"
+          android:layout_height="0dp"
+          android:layout_weight="1"
+          android:padding="10dp" />
+
+      <TextView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:text="Eventos inscritos"
+          android:textColor="@color/black"
+          android:textStyle="bold"
+          android:layout_marginStart="10dp"
+          android:textSize="20dp"
+          />
+      <ListView
+          android:id="@+id/listRegisterEvents"
+          android:layout_width="match_parent"
+          android:layout_height="0dp"
+          android:layout_weight="1"
+          />
+
+      <TextView
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:text="Os meus Eventos"
+          android:textColor="@color/black"
+          android:textStyle="bold"
+          android:textSize="20dp"
+          android:layout_marginStart="10dp"
+          />
+      <ListView
+          android:id="@+id/listMyEvents"
+          android:layout_width="match_parent"
+          android:layout_height="0dp"
+          android:layout_weight="1"
+          />
+
+
+
+
+   </LinearLayout>
+
+
+
+</LinearLayout>

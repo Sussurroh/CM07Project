@@ -16,8 +16,12 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.UUID;
 
@@ -32,6 +36,7 @@ public class EventCreateFragment extends Fragment {
     private Button create;
     private DatabaseReference reference;
 
+    String key,id;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -46,7 +51,7 @@ public class EventCreateFragment extends Fragment {
         mdata = root.findViewById(R.id.editTextDate);
         mrua = root.findViewById(R.id.rua_edit);
         mdist = root.findViewById(R.id.district_edit);
-
+        reference= FirebaseDatabase.getInstance().getReference("Events");
         create.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -61,13 +66,25 @@ public class EventCreateFragment extends Fragment {
                 String n8 = UUID.randomUUID().toString();
 
 
-                Evento event = new Evento(n1,n2,n3,n4,n5,n6,n7,n8);
+                String uid= FirebaseAuth.getInstance().getCurrentUser().getUid();
 
 
-                FirebaseDatabase.getInstance().getReference("Events")
-                        //.child(FirebaseAuth.getInstance().getCurrentUser().getUid())
-                        .push()
-                        .setValue(event).addOnCompleteListener(new OnCompleteListener<Void>() {
+                if(id!=null)
+                {
+                    n8=id;
+                }
+                Evento event = new Evento(n1,n2,n3,n4,n5,n6,n7,n8,uid);
+
+                DatabaseReference reference1=   FirebaseDatabase.getInstance().getReference("Events");
+
+                if(key!=null)
+                {
+                    reference1=reference1.child(key);
+                }
+                else
+                    reference1=reference1.push();
+
+                reference1.setValue(event).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()){
@@ -88,6 +105,58 @@ public class EventCreateFragment extends Fragment {
         });
 
 
+
+        if(getArguments()!=null)
+        {
+            String eventName=getArguments().getString("Name");
+
+            reference.orderByChild(eventName).addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                    for (DataSnapshot snapshot : dataSnapshot.getChildren()){
+
+                        final String a = snapshot.child("name").getValue().toString();
+
+                        //se o nome do item selecionado for igual a pesquisa entra e encontra o id desse nome do evento no db
+                        //e muda de fragmaneto com informacao do id
+                        if (eventName.toString().equals(a)){
+
+                            id =  snapshot.child("id").getValue().toString();
+                            final String name =  snapshot.child("name").getValue().toString();
+                            final String des =  snapshot.child("des").getValue().toString();
+                            final String org =  snapshot.child("org").getValue().toString();
+                            final String date =  snapshot.child("date").getValue().toString();
+                            final String streetadress =  snapshot.child("streetadress").getValue().toString();
+                            final String state =  snapshot.child("state").getValue().toString();
+
+
+                            mname.setText(name);
+                            mdesc.setText(des);
+                            morg.setText(org);
+                            mdata.setText(date);
+                            mrua.setText(streetadress);
+                            mdist.setText(state);
+
+
+                            key=snapshot.getKey();
+                            create.setText("Update Event");
+
+
+
+
+                        }
+                    }
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+
+        }
 
 
         return  root;
