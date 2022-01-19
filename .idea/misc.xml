@@ -40,6 +40,8 @@
         <entry key="..\:/Users/Toshiba/Desktop/CM07Project/app/src/main/res/layout/simple_list_item_1.xml" value="0.1015625" />
         <entry key="..\:/Users/Toshiba/Desktop/CM07Project/app/src/main/res/layout/snippetmapstest.xml" value="0.33" />
         <entry key="..\:/Users/Toshiba/Desktop/CM07Project/app/src/main/res/menu/bottom_nav_menu.xml" value="0.33" />
+        <entry key="app/src/main/res/drawable-hdpi/bg_map_search_bar.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable-hdpi/ic_search.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.18" />
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.25" />
@@ -49,6 +51,7 @@
         <entry key="app/src/main/res/layout/fragment_events__participation.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_events_details.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_events_donations.xml" value="0.14356884057971014" />
+        <entry key="app/src/main/res/layout/fragment_maps.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_messages.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_stock.xml" value="0.25" />
@@ -56,6 +59,7 @@
         <entry key="app/src/main/res/layout/simple_list_item_1.xml" value="0.15" />
         <entry key="app/src/main/res/layout/snippetmaps.xml" value="0.25" />
         <entry key="app/src/main/res/layout/snippetmapstest.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/user_item.xml" value="0.14628623188405798" />
       </map>
     </option>
   </component>
