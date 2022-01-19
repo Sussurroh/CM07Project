@@ -11,6 +11,7 @@
         app:layout_constraintVertical_bias=".3"
         app:layout_constraintHorizontal_bias=".5"
         android:hint="Email"
+        android:minEms="100"
         android:background="@drawable/edittext_bg"
         android:paddingLeft="20dp"
         android:paddingTop="10dp"
@@ -44,12 +45,12 @@
 
     <Button
         android:id="@+id/btn_login"
-        android:layout_width="0dp"
+        android:layout_width="329dp"
         android:layout_height="wrap_content"
         android:text="Login"
         android:textSize="16sp"
         android:textStyle="bold"
-        android:background="@drawable/button_bg"
+        android:backgroundTint="@color/orangelight"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -61,7 +62,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Forgot Password?"
+        android:text="Esqueceu Password?"
         android:id="@+id/forgot"
         android:layout_marginTop="5dp"
         app:layout_constraintVertical_bias="0"

@@ -11,14 +11,16 @@
        android:layout_height="match_parent"
        android:orientation="vertical"
        >
+
       <Button
           android:id="@+id/eventcreatbutton"
-          android:layout_margin="20dp"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
+          android:layout_margin="20dp"
           android:backgroundTint="@color/orangelight"
           android:text="Criar Evento"
           android:textColor="@color/black" />
+
       <TextView
           android:id="@+id/nome"
           android:layout_width="match_parent"

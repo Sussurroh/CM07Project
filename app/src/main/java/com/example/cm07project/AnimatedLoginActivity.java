@@ -71,9 +71,6 @@ public class AnimatedLoginActivity extends AppCompatActivity {
         mTabLayout.setTabTextColors(Color.parseColor("#727272"),Color.parseColor("#D81B60"));
 
         mViewPager = findViewById(R.id.view_pager);
-        fb = findViewById(R.id.fab_fb);
-        google = findViewById(R.id.fab_google);
-        twitter = findViewById(R.id.fab_twitter);
 
         mTabLayout.addTab(mTabLayout.newTab().setText("Login"));
         mTabLayout.addTab(mTabLayout.newTab().setText("Sign Up"));
@@ -105,20 +102,14 @@ public class AnimatedLoginActivity extends AppCompatActivity {
 
             }
         });
-        fb.setTranslationY(300);
-        google.setTranslationY(300);
-        twitter.setTranslationY(300);
+
         mTabLayout.setTranslationY(300);
 
-        fb.setAlpha(v);
-        google.setAlpha(v);
-        twitter.setAlpha(v);
+
         mTabLayout.setAlpha(v);
 
-        fb.animate().translationY(0).alpha(1).setDuration(1000).setStartDelay(400).start();
-        google.animate().translationY(0).alpha(1).setDuration(1000).setStartDelay(600).start();
-        twitter.animate().translationY(0).alpha(1).setDuration(1000).setStartDelay(800).start();
-        twitter.animate().translationY(0).alpha(1).setDuration(1000).setStartDelay(100).start();
+
+        mTabLayout.animate().translationY(0).alpha(1).setDuration(1000).setStartDelay(100).start();
     }
 
 
