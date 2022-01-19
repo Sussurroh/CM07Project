@@ -355,9 +355,9 @@ public class CreateItemFragment extends Fragment {
         {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED)
             {
-                Intent cameraIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                if (cameraIntent.resolveActivity(getActivity().getPackageManager()) != null) {
-                    startActivityForResult(cameraIntent, 1000);
+                Intent cameraIntent2 = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                if (cameraIntent2.resolveActivity(getActivity().getPackageManager()) != null) {
+                    startActivityForResult(cameraIntent2, 1000);
                 }
             }
             else

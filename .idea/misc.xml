@@ -20,9 +20,11 @@
         <entry key="..\:/Users/Toshiba/Desktop/CM07Project/app/src/main/res/layout/event_row.xml" value="0.25" />
         <entry key="..\:/Users/Toshiba/Desktop/CM07Project/app/src/main/res/layout/fragment_chat.xml" value="0.16296296296296298" />
         <entry key="..\:/Users/Toshiba/Desktop/CM07Project/app/src/main/res/layout/fragment_create_item.xml" value="0.25" />
-        <entry key="..\:/Users/Toshiba/Desktop/CM07Project/app/src/main/res/layout/fragment_event_create.xml" value="0.25" />
+        <entry key="..\:/Users/Toshiba/Desktop/CM07Project/app/src/main/res/layout/fragment_event_create.xml" value="0.5" />
         <entry key="..\:/Users/Toshiba/Desktop/CM07Project/app/src/main/res/layout/fragment_events.xml" value="0.33" />
+        <entry key="..\:/Users/Toshiba/Desktop/CM07Project/app/src/main/res/layout/fragment_events__participation.xml" value="0.18854166666666666" />
         <entry key="..\:/Users/Toshiba/Desktop/CM07Project/app/src/main/res/layout/fragment_events_details.xml" value="0.5" />
+        <entry key="..\:/Users/Toshiba/Desktop/CM07Project/app/src/main/res/layout/fragment_events_donations.xml" value="0.18854166666666666" />
         <entry key="..\:/Users/Toshiba/Desktop/CM07Project/app/src/main/res/layout/fragment_item.xml" value="0.18854166666666666" />
         <entry key="..\:/Users/Toshiba/Desktop/CM07Project/app/src/main/res/layout/fragment_item_details.xml" value="0.25" />
         <entry key="..\:/Users/Toshiba/Desktop/CM07Project/app/src/main/res/layout/fragment_item_list.xml" value="0.17447916666666666" />
@@ -36,7 +38,7 @@
         <entry key="..\:/Users/Toshiba/Desktop/CM07Project/app/src/main/res/layout/login_tab_fragment.xml" value="0.18854166666666666" />
         <entry key="..\:/Users/Toshiba/Desktop/CM07Project/app/src/main/res/layout/signup_tab_fragment.xml" value="0.33" />
         <entry key="..\:/Users/Toshiba/Desktop/CM07Project/app/src/main/res/layout/simple_list_item_1.xml" value="0.1015625" />
-        <entry key="..\:/Users/Toshiba/Desktop/CM07Project/app/src/main/res/layout/snippetmapstest.xml" value="0.18" />
+        <entry key="..\:/Users/Toshiba/Desktop/CM07Project/app/src/main/res/layout/snippetmapstest.xml" value="0.33" />
         <entry key="..\:/Users/Toshiba/Desktop/CM07Project/app/src/main/res/menu/bottom_nav_menu.xml" value="0.33" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.18" />

@@ -58,16 +58,16 @@ public class EventsDetailsFragment extends Fragment {
                     if (strtext.toString().equals(a)){
                         //list.add(a);
                         final String n1 = "Nome do evento: " + snapshot.child("name").getValue().toString();
-                        final String n2 = "Organizador: " + snapshot.child("org").getValue().toString();
                         final String n3 = "Data: " + snapshot.child("date").getValue().toString();
                         final String n4 = "Descrição: " + snapshot.child("des").getValue().toString();
                         final String n5 = "Localização: " + snapshot.child("streetadress").getValue().toString()
                                 +", " + snapshot.child("state").getValue().toString();
                         list.add(n1);
-                        list.add(n2);
                         list.add(n3);
                         list.add(n4);
                         list.add(n5);
+
+                        // TODO:add username
                     }
 
                     //list.add(a);
@@ -92,7 +92,7 @@ public class EventsDetailsFragment extends Fragment {
         donation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentManager fm = getFragmentManager();
+                FragmentManager fm = getActivity().getSupportFragmentManager();
                 FragmentTransaction ft = fm.beginTransaction();
                 EventsDonationFragment llf = new EventsDonationFragment();
                 bundle.putString("message", strtext.toString());
@@ -106,7 +106,7 @@ public class EventsDetailsFragment extends Fragment {
         participar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentManager fm = getFragmentManager();
+                FragmentManager fm = getActivity().getSupportFragmentManager();
                 FragmentTransaction ft = fm.beginTransaction();
                 EventsParticipationFragment llf = new EventsParticipationFragment();
                 bundle.putString("message", strtext.toString());

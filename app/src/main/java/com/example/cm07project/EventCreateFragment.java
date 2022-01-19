@@ -29,7 +29,7 @@ public class EventCreateFragment extends Fragment {
 
     private EditText mname;
     private EditText mdesc;
-    private EditText morg;
+
     private EditText mdata;
     private EditText mrua;
     private EditText mdist;
@@ -47,7 +47,7 @@ public class EventCreateFragment extends Fragment {
 
         mname = root.findViewById(R.id.eventnameedit);
         mdesc = root.findViewById(R.id.eventdescedit);
-        morg = root.findViewById(R.id.org_edit);
+
         mdata = root.findViewById(R.id.editTextDate);
         mrua = root.findViewById(R.id.rua_edit);
         mdist = root.findViewById(R.id.district_edit);
@@ -58,7 +58,7 @@ public class EventCreateFragment extends Fragment {
 
                 String n1 = mname.getText().toString();
                 String n2 = mdesc.getText().toString();
-                String n3 = morg.getText().toString();
+
                 String n4 = mdata.getText().toString();
                 String n5 = mrua.getText().toString();
                 String n6 = mdist.getText().toString();
@@ -68,12 +68,11 @@ public class EventCreateFragment extends Fragment {
 
                 String uid= FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-
                 if(id!=null)
                 {
                     n8=id;
                 }
-                Evento event = new Evento(n1,n2,n3,n4,n5,n6,n7,n8,uid);
+                Evento event = new Evento(n1,n2,n4,n5,n6,n7,n8,uid);
 
                 DatabaseReference reference1=   FirebaseDatabase.getInstance().getReference("Events");
 
@@ -89,7 +88,7 @@ public class EventCreateFragment extends Fragment {
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()){
                             Toast.makeText(getActivity(), "Evento registered", Toast.LENGTH_SHORT).show();
-                            FragmentManager fm = getFragmentManager();
+                            FragmentManager fm = getActivity().getSupportFragmentManager();
                             FragmentTransaction ft = fm.beginTransaction();
                             EventsFragment llf = new EventsFragment();
                             ft.replace(R.id.container, llf);
@@ -133,7 +132,6 @@ public class EventCreateFragment extends Fragment {
 
                             mname.setText(name);
                             mdesc.setText(des);
-                            morg.setText(org);
                             mdata.setText(date);
                             mrua.setText(streetadress);
                             mdist.setText(state);

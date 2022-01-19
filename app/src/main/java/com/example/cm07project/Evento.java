@@ -8,7 +8,6 @@ public class Evento {
 
     String name;
     String des;
-    String org;
     String date;
     String streetadress;
     String state;
@@ -34,10 +33,9 @@ public class Evento {
 
     String key;
 
-    public Evento(String name, String des, String org, String date, String streetadress, String state, String country, String id,String uid) {
+    public Evento(String name, String des, String date, String streetadress, String state, String country, String id,String uid) {
         this.name = name;
         this.des = des;
-        this.org = org;
         this.date = date;
         this.streetadress = streetadress;
         this.state = state;
@@ -62,14 +60,6 @@ public class Evento {
 
     public void setDes(String des) {
         this.des = des;
-    }
-
-    public String getOrg() {
-        return org;
-    }
-
-    public void setOrg(String org) {
-        this.org = org;
     }
 
     public String getDate() {
