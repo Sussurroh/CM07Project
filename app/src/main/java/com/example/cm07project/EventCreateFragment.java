@@ -124,7 +124,7 @@ public class EventCreateFragment extends Fragment {
                             id =  snapshot.child("id").getValue().toString();
                             final String name =  snapshot.child("name").getValue().toString();
                             final String des =  snapshot.child("des").getValue().toString();
-                            final String org =  snapshot.child("org").getValue().toString();
+                            //final String org =  snapshot.child("org").getValue().toString();
                             final String date =  snapshot.child("date").getValue().toString();
                             final String streetadress =  snapshot.child("streetadress").getValue().toString();
                             final String state =  snapshot.child("state").getValue().toString();
